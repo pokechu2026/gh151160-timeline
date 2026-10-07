@@ -3,111 +3,615 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GH151160 執行時程｜智谷網絡</title>
-<meta name="description" content="GH151160 深耕-生成式 AI 提升行政效能教育訓練暨行政流程優化專案：執行時程（依服務建議書 2.5）">
+<meta name="robots" content="noindex, nofollow">
+<title>不是聊天，是交辦｜深耕 生成式 AI 行政效能課程｜智谷網絡</title>
+<meta name="description" content="GH151160 深耕-生成式 AI 提升行政效能教育訓練暨行政流程優化專案：三門課程、八項單位痛點、AI Agent 工作方法與執行時程（依服務建議書整理）">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap">
 <style>
-  :root {
-    --ink: #1B3A4B; --teal: #0E7B7B; --teal2: #3E9CA9; --mint: #A7D8D4; --aqua: #EEF8F8;
-    --orange: #E07B39; --cream: #FFF4E6; --grey: #5E7C80; --line: #D6E9E8; --bg: #F7FBFB; --card: #FFFFFF;
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink);
-    font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", system-ui, sans-serif; line-height: 1.6; }
-  header { background: linear-gradient(120deg, var(--teal), var(--teal2)); color: #fff; padding: 28px 16px 24px; }
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
-  header .wrap { padding: 0; }
-  .kicker { font-size: 14px; opacity: .9; letter-spacing: .04em; }
-  h1 { margin: 6px 0 4px; font-size: clamp(22px, 3.4vw, 32px); line-height: 1.3; }
-  .sub { font-size: 15px; opacity: .95; }
-  .vendor { display: inline-block; margin-top: 12px; background: rgba(255,255,255,.18); border-radius: 999px; padding: 4px 14px; font-size: 14px; font-weight: 700; }
-  main { padding: 24px 0 40px; }
-  .note { background: var(--cream); border-left: 5px solid var(--orange); border-radius: 8px; padding: 12px 16px; font-size: 15px; margin-bottom: 20px; }
-  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
-  .kpi { background: var(--card); border-radius: 12px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(14,123,123,.10); }
-  .kpi b { display: block; font-size: 24px; color: var(--orange); line-height: 1.2; }
-  .kpi span { font-size: 14px; color: var(--grey); }
-  h2 { font-size: 20px; margin: 28px 0 12px; color: var(--teal); }
-  /* Gantt */
-  .gantt { background: var(--card); border-radius: 12px; padding: 16px; box-shadow: 0 1px 3px rgba(14,123,123,.10); overflow-x: auto; }
-  .g-inner { min-width: 720px; position: relative; }
-  .g-head, .g-row { display: grid; grid-template-columns: 170px 1fr; align-items: center; }
-  .g-head { font-size: 13px; color: var(--grey); border-bottom: 1px solid var(--line); padding-bottom: 6px; }
-  .months { position: relative; height: 22px; }
-  .months span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
-  .g-row { min-height: 52px; border-bottom: 1px dashed var(--line); cursor: pointer; }
-  .g-row:hover, .g-row.active { background: var(--aqua); }
-  .g-label { font-size: 13px; font-weight: 700; padding: 6px 8px 6px 4px; }
-  .g-label small { display: block; font-weight: 400; color: var(--grey); font-size: 12px; }
-  .track { position: relative; height: 52px; }
-  .bar { position: absolute; top: 14px; height: 24px; border-radius: 6px; background: var(--teal); color: #fff; font-size: 12px; padding: 2px 8px; white-space: nowrap; overflow: hidden; }
-  .bar.rel { background: repeating-linear-gradient(45deg, var(--teal2), var(--teal2) 6px, #5DB0BB 6px, #5DB0BB 12px); }
-  .bar.hot { background: var(--orange); }
-  .bar.soft { background: var(--mint); color: var(--ink); }
-  .dot { position: absolute; top: 15px; width: 22px; height: 22px; margin-left: -11px; border-radius: 50%; background: var(--orange); border: 3px solid #fff; box-shadow: 0 0 0 2px var(--orange); }
-  .grid-line { position: absolute; top: 28px; bottom: 0; width: 1px; background: var(--line); }
-  .deadline { position: absolute; top: 28px; bottom: 0; width: 0; border-left: 2px dashed var(--orange); z-index: 2; }
-  .deadline em { position: absolute; top: 2px; left: 4px; font-size: 12px; color: var(--orange); font-style: normal; font-weight: 700; white-space: nowrap; }
-  .today { position: absolute; top: 28px; bottom: 0; width: 2px; background: var(--ink); z-index: 2; }
-  .today em { position: absolute; top: 2px; left: 4px; font-size: 12px; color: var(--ink); font-style: normal; white-space: nowrap; }
-  .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--grey); margin-top: 10px; }
-  .legend i { display: inline-block; width: 18px; height: 10px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
-  /* stage detail */
-  .stages { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
-  .stage { background: var(--card); border-radius: 12px; padding: 12px; border-top: 5px solid var(--teal); cursor: pointer; box-shadow: 0 1px 3px rgba(14,123,123,.10); }
-  .stage.hot { border-top-color: var(--orange); }
-  .stage.active { outline: 2px solid var(--teal2); }
-  .stage .n { font-size: 13px; color: var(--grey); }
-  .stage .t { font-weight: 700; font-size: 15px; }
-  .stage .d { font-size: 13px; color: var(--orange); font-weight: 700; }
-  .detail { margin-top: 14px; background: var(--card); border-radius: 12px; padding: 18px; box-shadow: 0 1px 3px rgba(14,123,123,.10); display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .detail h3 { margin: 0 0 6px; font-size: 15px; color: var(--teal); }
-  .detail ul { margin: 0; padding-left: 20px; font-size: 14px; }
-  .detail .head { grid-column: 1 / -1; font-size: 18px; font-weight: 700; }
-  .detail .head span { color: var(--orange); font-size: 15px; margin-left: 8px; }
-  footer { text-align: center; font-size: 13px; color: var(--grey); padding: 18px 16px 32px; }
-  @media (max-width: 760px) {
-    .kpis { grid-template-columns: repeat(2, 1fr); }
-    .stages { grid-template-columns: 1fr 1fr; }
-    .detail { grid-template-columns: 1fr; }
-  }
+/* Layout: 編輯式長頁。深墨藍 hero → 米白紙面各節，以細線與大號序號分節；
+   院方官網色系（墨藍／青綠／暖橘）只做重點，不鋪滿。三門課識別色沿用簡報：青綠／綠／藍。 */
+:root {
+  color-scheme: light;
+  --paper: #F7F5F0; --paper2: #EFECE4; --card: #FFFFFF;
+  --ink: #14293A; --ink2: #3D5361; --muted: #6B7D86; --rule: #DDD8CC; --rule2: #E8E4DA;
+  --night: #0F2230; --night2: #163243;
+  --teal: #0E7B7B; --teal-l: #5FB8B2; --teal-soft: #E2F0EE;
+  --orange: #C8692E; --orange-l: #F0A46E; --orange-soft: #F8EADF;
+  --c1: #0E7B7B; --c2: #2E8B57; --c3: #3A6EA5;
+  --serif: "Noto Serif TC", "Songti TC", serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.85; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+a { color: inherit; }
+::selection { background: var(--orange-soft); }
+
+/* top bar */
+.top { position: sticky; top: 0; z-index: 20; background: rgba(15,34,48,.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #DCE7EA; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 16px; }
+.brand { font-size: 14px; letter-spacing: .12em; white-space: nowrap; }
+.brand b { color: #fff; font-weight: 700; letter-spacing: .08em; }
+.top nav { display: flex; gap: 22px; font-size: 14px; }
+.top nav a { text-decoration: none; opacity: .78; transition: opacity .2s; white-space: nowrap; }
+.top nav a:hover, .top nav a:focus-visible { opacity: 1; }
+
+/* hero */
+.hero { background: radial-gradient(1200px 520px at 85% 10%, #1D4A5C 0%, rgba(29,74,92,0) 60%), linear-gradient(180deg, var(--night) 0%, var(--night2) 100%); color: #E9F0F1; padding: 88px 0 96px; position: relative; overflow: hidden; }
+.hero::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 56px 56px; mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent); pointer-events: none; }
+.hero .wrap > *, .agent > *, .fr.wide > * { min-width: 0; }
+.hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1.08fr .92fr; gap: 56px; align-items: center; }
+.eyebrow { font-size: 13.5px; letter-spacing: .2em; color: var(--teal-l); margin: 0 0 22px; }
+.hero h1 { font-family: var(--serif); font-weight: 900; font-size: clamp(44px, 6.6vw, 84px); line-height: 1.12; letter-spacing: .02em; margin: 0 0 26px; color: #fff; }
+.hero h1 em { font-style: normal; color: var(--orange-l); }
+.hero .lead { font-size: 19px; line-height: 1.9; color: #C3D3D8; max-width: 33em; margin: 0 0 34px; }
+.hero .lead b { color: #fff; font-weight: 500; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-size: 15px; padding: 11px 22px; border-radius: 999px; border: 1px solid rgba(255,255,255,.28); color: #fff; transition: background .2s, border-color .2s; }
+.btn.primary { background: var(--orange); border-color: var(--orange); }
+.btn:hover { border-color: #fff; }
+.btn.primary:hover { background: #B35A23; }
+
+/* hero card: 交辦單 */
+.brief { background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.14); border-radius: 18px; padding: 22px 22px 18px; font-size: 14.5px; line-height: 1.75; box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); }
+.brief .chrome { display: flex; align-items: center; gap: 7px; margin-bottom: 14px; }
+.brief .chrome i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.22); }
+.brief .chrome span { margin-left: 8px; font-size: 12.5px; letter-spacing: .1em; color: #9FB6BD; }
+.brief .ask { overflow-wrap: anywhere; color: #E6EEF0; border-left: 2px solid var(--orange-l); padding-left: 14px; margin: 0 0 16px; }
+.brief .ask code, .brief .files code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .92em; color: var(--orange-l); }
+.brief .files { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+.brief .files div { background: rgba(255,255,255,.06); border-radius: 10px; padding: 9px 10px; font-size: 12.5px; color: #A9C0C6; line-height: 1.5; }
+.brief .files code { display: block; color: #fff; font-size: 13px; margin-bottom: 2px; }
+.brief .done { display: flex; flex-direction: column; gap: 5px; font-size: 13.5px; color: #BFD3D7; }
+.brief .done span::before { content: "✓"; color: var(--teal-l); margin-right: 8px; font-weight: 700; }
+.brief .cap { margin-top: 12px; font-size: 12px; color: #7F99A1; }
+
+/* stats */
+.stats { background: var(--night2); color: #fff; border-top: 1px solid rgba(255,255,255,.08); }
+.stats .wrap { display: grid; grid-template-columns: repeat(5, 1fr); }
+.stat { padding: 26px 8px 28px; border-left: 1px solid rgba(255,255,255,.08); }
+.stat:first-child { border-left: 0; }
+.stat b { display: block; font-family: var(--serif); font-size: clamp(30px, 3.6vw, 44px); font-weight: 700; line-height: 1.1; color: #fff; font-variant-numeric: lining-nums; }
+.stat b small { font-size: .5em; font-weight: 500; margin-left: 2px; color: var(--teal-l); }
+.stat span { font-size: 13.5px; color: #9FB6BD; letter-spacing: .04em; }
+
+/* sections */
+section.sec { padding: 104px 0 24px; }
+.sec-head { display: grid; grid-template-columns: 120px 1fr; gap: 24px; margin-bottom: 48px; }
+.sec-no { font-family: var(--serif); font-size: 15px; color: var(--orange); letter-spacing: .14em; padding-top: 14px; border-top: 2px solid var(--orange); align-self: start; }
+.sec-head h2 { font-family: var(--serif); font-weight: 700; font-size: clamp(30px, 4vw, 46px); line-height: 1.3; margin: 0 0 14px; letter-spacing: .02em; text-wrap: balance; }
+.sec-head p { margin: 0; color: var(--ink2); max-width: 40em; font-size: 18px; }
+.indent { margin-left: 144px; }
+
+/* pain points */
+.pains { border-top: 1px solid var(--ink); }
+.pain { display: grid; grid-template-columns: 64px 220px 1fr 28px; gap: 20px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid var(--rule); cursor: pointer; }
+.pain:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
+.pain .n { font-family: var(--serif); font-size: 26px; color: var(--muted); font-variant-numeric: lining-nums; }
+.pain .u { font-size: 14.5px; color: var(--teal); font-weight: 700; letter-spacing: .03em; }
+.pain .p { font-size: 18.5px; line-height: 1.7; }
+.pain .x { color: var(--muted); font-size: 20px; transition: transform .25s; text-align: right; }
+.pain[aria-expanded="true"] .x { transform: rotate(45deg); color: var(--orange); }
+.pain[aria-expanded="true"] .n { color: var(--orange); }
+.pain .more { grid-column: 3 / 4; display: none; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 6px; }
+.pain[aria-expanded="true"] .more { display: grid; }
+.more h4 { margin: 0 0 4px; font-size: 12.5px; letter-spacing: .14em; color: var(--muted); font-weight: 700; }
+.more p { margin: 0; font-size: 15.5px; line-height: 1.75; color: var(--ink2); }
+.more .out { color: var(--ink); }
+.more .tag { display: inline-block; font-size: 12.5px; padding: 0 9px; border-radius: 999px; margin: 0 6px 4px 0; color: #fff; }
+.pains-note { margin-top: 18px; font-size: 14.5px; color: var(--muted); }
+
+/* friction → design */
+.fric { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 20px; overflow: hidden; }
+.fr { background: var(--card); padding: 34px 34px 32px; }
+.fr .q { font-family: var(--serif); font-size: 22px; font-weight: 700; line-height: 1.5; margin: 0 0 6px; }
+.fr .q::before { content: "「"; color: var(--orange); }
+.fr .q::after { content: "」"; color: var(--orange); }
+.fr .k { font-size: 12.5px; letter-spacing: .16em; color: var(--teal); font-weight: 700; margin: 18px 0 6px; }
+.fr p { margin: 0; font-size: 16px; color: var(--ink2); line-height: 1.85; }
+.fr.wide { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: center; }
+.flow { width: 100%; height: auto; display: block; }
+
+/* agent folder */
+.agent { display: grid; grid-template-columns: .95fr 1.05fr; gap: 56px; align-items: start; }
+.agent .lede { font-family: var(--serif); font-size: 26px; line-height: 1.6; margin: 0 0 24px; }
+.agent .lede em { font-style: normal; color: var(--orange); }
+.steps3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 28px 0 0; border-top: 1px solid var(--ink); }
+.steps3 div { padding: 16px 14px 0 0; }
+.steps3 b { display: block; font-family: var(--serif); font-size: 22px; }
+.steps3 span { font-size: 14.5px; color: var(--ink2); line-height: 1.65; display: block; margin-top: 4px; }
+.folder { background: var(--card); border: 1px solid var(--rule); border-radius: 20px; padding: 10px; box-shadow: 0 24px 50px -30px rgba(20,41,58,.35); }
+.folder .path { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; color: var(--muted); padding: 10px 14px 12px; border-bottom: 1px solid var(--rule2); }
+.file { display: grid; grid-template-columns: 112px 1fr; gap: 16px; padding: 18px 14px; border-bottom: 1px solid var(--rule2); }
+.file:last-child { border-bottom: 0; }
+.file code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 15px; font-weight: 700; color: var(--teal); }
+.file p { margin: 0; font-size: 15.5px; line-height: 1.75; color: var(--ink2); }
+.file p b { color: var(--ink); font-weight: 700; }
+.tools { margin-top: 18px; font-size: 14.5px; color: var(--muted); line-height: 1.8; }
+
+/* courses */
+.courses { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.course { background: var(--card); border-radius: 20px; padding: 30px 26px 24px; border-top: 5px solid var(--c); display: flex; flex-direction: column; box-shadow: 0 1px 0 var(--rule); }
+.course .cn { font-size: 13px; letter-spacing: .18em; color: var(--c); font-weight: 700; }
+.course h3 { font-family: var(--serif); font-size: 25px; line-height: 1.4; margin: 8px 0 10px; }
+.course .goal { font-size: 15.5px; color: var(--ink2); line-height: 1.8; margin: 0 0 18px; }
+.course .who { font-size: 13.5px; color: var(--muted); margin-bottom: 16px; }
+.units { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule2); counter-reset: u; }
+.units li { display: grid; grid-template-columns: 34px 1fr; gap: 6px; padding: 10px 0; border-bottom: 1px solid var(--rule2); font-size: 15px; line-height: 1.6; }
+.units li::before { counter-increment: u; content: "U" counter(u); font-size: 12.5px; font-weight: 700; color: var(--c); padding-top: 2px; }
+.units li small { display: block; color: var(--muted); font-size: 13px; margin-top: 2px; }
+.units li.ws { background: var(--orange-soft); margin: 0 -10px; padding-left: 10px; padding-right: 10px; border-radius: 8px; border-bottom: 0; }
+.units li.ws::before { color: var(--orange); }
+.course .tech { margin-top: auto; padding-top: 18px; font-size: 13.5px; color: var(--muted); line-height: 1.7; }
+.principles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--ink); }
+.principles b { display: block; font-family: var(--serif); font-size: 32px; color: var(--orange); line-height: 1.2; }
+.principles span { font-size: 15px; color: var(--ink2); line-height: 1.7; display: block; margin-top: 6px; }
+
+/* seed */
+.seed { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); }
+.phase { padding: 30px 30px 32px 0; border-right: 1px solid var(--rule); }
+.phase + .phase { padding-left: 30px; }
+.phase:last-child { border-right: 0; }
+.phase .when { font-size: 13px; letter-spacing: .2em; color: var(--orange); font-weight: 700; }
+.phase h3 { font-family: var(--serif); font-size: 23px; margin: 8px 0 14px; line-height: 1.45; }
+.phase ul { margin: 0; padding: 0; list-style: none; }
+.phase li { font-size: 15.5px; color: var(--ink2); padding-left: 18px; position: relative; margin: 8px 0; line-height: 1.75; }
+.phase li::before { content: ""; position: absolute; left: 0; top: .78em; width: 7px; height: 1px; background: var(--ink); }
+.quote { margin: 64px auto 0; max-width: 860px; text-align: center; font-family: var(--serif); font-size: clamp(22px, 2.6vw, 30px); line-height: 1.7; }
+.quote small { display: block; font-family: var(--sans); font-size: 14px; color: var(--muted); margin-top: 12px; letter-spacing: .06em; }
+
+/* timeline */
+.tl-band { background: var(--paper2); margin-top: 104px; padding: 0 0 88px; }
+.tl-band section.sec { padding-top: 96px; }
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; margin-bottom: 28px; }
+.kpi { background: var(--card); padding: 20px 22px; }
+.kpi b { display: block; font-family: var(--serif); font-size: 26px; color: var(--orange); line-height: 1.25; font-variant-numeric: lining-nums; }
+.kpi span { font-size: 14px; color: var(--ink2); line-height: 1.6; display: block; margin-top: 4px; }
+.gantt { background: var(--card); border-radius: 16px; padding: 18px 20px; border: 1px solid var(--rule); overflow-x: auto; }
+.g-inner { min-width: 760px; position: relative; }
+.g-head, .g-row { display: grid; grid-template-columns: 190px 1fr; align-items: center; }
+.g-head { font-size: 13px; color: var(--muted); border-bottom: 1px solid var(--rule); padding-bottom: 6px; }
+.months { position: relative; height: 22px; }
+.months span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; letter-spacing: .1em; }
+.g-row { min-height: 56px; border-bottom: 1px dashed var(--rule2); cursor: pointer; transition: background .15s; }
+.g-row:last-child { border-bottom: 0; }
+.g-row:hover, .g-row.active { background: var(--teal-soft); }
+.g-label { font-size: 14px; font-weight: 700; padding: 6px 8px 6px 6px; line-height: 1.45; }
+.g-label small { display: block; font-weight: 400; color: var(--muted); font-size: 12.5px; }
+.track { position: relative; height: 56px; }
+.bar { position: absolute; top: 15px; height: 26px; border-radius: 6px; background: var(--teal); color: #fff; font-size: 12.5px; padding: 3px 9px; white-space: nowrap; overflow: hidden; line-height: 20px; }
+.bar.rel { background: repeating-linear-gradient(45deg, #3E9CA9, #3E9CA9 6px, #67B4BE 6px, #67B4BE 12px); }
+.bar.hot { background: var(--orange); }
+.bar.soft { background: #A7D8D4; color: var(--ink); }
+.dot { position: absolute; top: 16px; width: 24px; height: 24px; margin-left: -12px; border-radius: 50%; background: var(--orange); border: 3px solid #fff; box-shadow: 0 0 0 2px var(--orange); }
+.grid-line { position: absolute; top: 28px; bottom: 0; width: 1px; background: var(--rule2); }
+.deadline { position: absolute; top: 28px; bottom: 0; width: 0; border-left: 2px dashed var(--orange); z-index: 2; }
+.deadline em { position: absolute; top: 2px; left: 5px; font-size: 12px; color: var(--orange); font-style: normal; font-weight: 700; white-space: nowrap; }
+.today { position: absolute; top: 28px; bottom: 0; width: 2px; background: var(--ink); z-index: 2; }
+.today em { position: absolute; top: 2px; left: 5px; font-size: 12px; color: var(--ink); font-style: normal; white-space: nowrap; }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--muted); margin-top: 12px; }
+.legend i { display: inline-block; width: 18px; height: 10px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+.stages { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 22px; }
+.stage { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; background: var(--card); border-radius: 12px; padding: 14px 14px 12px; border: 1px solid var(--rule); border-top: 4px solid var(--teal); cursor: pointer; text-align: left; font: inherit; color: inherit; }
+.stage.hot { border-top-color: var(--orange); }
+.stage[aria-pressed="true"] { outline: 2px solid var(--teal); outline-offset: -1px; }
+.stage .n { font-size: 12.5px; color: var(--muted); letter-spacing: .1em; }
+.stage .t { font-weight: 700; font-size: 15.5px; line-height: 1.5; display: block; }
+.stage .d { font-size: 13px; color: var(--orange); font-weight: 700; display: block; margin-top: 2px; }
+.detail { margin-top: 12px; background: var(--card); border-radius: 14px; padding: 22px 24px; border: 1px solid var(--rule); display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.detail h3 { margin: 0 0 6px; font-size: 13px; color: var(--teal); letter-spacing: .14em; }
+.detail ul { margin: 0; padding-left: 20px; font-size: 15px; line-height: 1.75; }
+.detail .head { grid-column: 1 / -1; font-family: var(--serif); font-size: 21px; font-weight: 700; }
+.detail .head span { color: var(--orange); font-family: var(--sans); font-size: 15px; margin-left: 10px; }
+.tl-note { font-size: 14px; color: var(--muted); margin-top: 16px; line-height: 1.8; }
+
+/* team */
+.team { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 20px; }
+.member { background: var(--card); border-radius: 18px; padding: 28px 26px; border: 1px solid var(--rule); }
+.member .role { font-size: 12.5px; letter-spacing: .16em; color: var(--teal); font-weight: 700; }
+.member h3 { font-family: var(--serif); font-size: 24px; margin: 6px 0 10px; }
+.member p { margin: 0; font-size: 15.5px; color: var(--ink2); line-height: 1.85; }
+.member.org { background: var(--night); color: #E6EEF0; border-color: var(--night); }
+.member.org .role { color: var(--teal-l); }
+.member.org p { color: #B7C9CE; }
+
+footer { margin-top: 104px; background: var(--night); color: #9FB6BD; padding: 44px 0 52px; font-size: 14px; line-height: 1.9; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; }
+footer b { color: #fff; font-weight: 700; letter-spacing: .06em; }
+
+/* reveal */
+.rv { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .rv { opacity: 1; transform: none; transition: none; } }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+
+@media (max-width: 980px) {
+  .hero .wrap, .agent, .fr.wide { grid-template-columns: 1fr; }
+  .hero { padding: 64px 0 72px; }
+  .stats .wrap { grid-template-columns: repeat(3, 1fr); }
+  .stat:nth-child(4) { border-left: 0; }
+  .courses, .team { grid-template-columns: 1fr; }
+  .principles { grid-template-columns: repeat(2, 1fr); }
+  .seed { grid-template-columns: 1fr; }
+  .phase, .phase + .phase { padding: 26px 0; border-right: 0; border-bottom: 1px solid var(--rule); }
+  .stages { grid-template-columns: repeat(3, 1fr); }
+  .kpis { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+  .wrap { padding: 0 16px; }
+  .top nav { display: none; }
+  .sec-head { grid-template-columns: 1fr; gap: 14px; }
+  .sec-no { width: 64px; }
+  .indent { margin-left: 0; }
+  section.sec { padding-top: 72px; }
+  .stats .wrap { grid-template-columns: repeat(2, 1fr); }
+  .stat { border-left: 0; padding-left: 0; }
+  .pain { grid-template-columns: 40px 1fr 24px; gap: 4px 12px; }
+  .pain .u { grid-column: 2 / 3; }
+  .pain .p { grid-column: 2 / 3; }
+  .pain .x { grid-column: 3; grid-row: 1; }
+  .pain .more { grid-column: 2 / 4; grid-template-columns: 1fr; }
+  .fric { grid-template-columns: 1fr; }
+  .fr { padding: 26px 22px; }
+  .brief .files { grid-template-columns: 1fr; }
+  .file { grid-template-columns: 1fr; gap: 4px; }
+  .steps3 { grid-template-columns: 1fr; }
+  .stages { grid-template-columns: 1fr 1fr; }
+  .detail { grid-template-columns: 1fr; }
+  .principles { grid-template-columns: 1fr 1fr; gap: 20px; }
+}
 </style>
 </head>
 <body>
-<header>
+
+<header class="top">
   <div class="wrap">
-    <div class="kicker">案號 GH151160｜國立臺灣大學醫學院附設醫院新竹臺大分院</div>
-    <h1>深耕-生成式 AI 提升行政效能教育訓練暨行政流程優化專案｜執行時程</h1>
-    <div class="sub">五階段・三場課程・12 月 15 日前驗收</div>
-    <div class="vendor">智谷網絡股份有限公司</div>
+    <div class="brand"><b>智谷網絡</b>　GH151160</div>
+    <nav aria-label="頁內導覽">
+      <a href="#pains">八項痛點</a><a href="#frictions">卡關與解法</a><a href="#agent">AI Agent</a><a href="#courses">三門課程</a><a href="#seed">種子人才</a><a href="#timeline">執行時程</a>
+    </nav>
   </div>
 </header>
-<main class="wrap">
-  <div class="note">本頁依本公司服務建議書 2.5「執行流程與時程」繪製，課程日期以候選 B 排定。實際日期依本院行事曆與會議室檔期，於需求確認會議定案。斜紋長條為依決標日起算的階段，位置僅供示意。</div>
 
-  <div class="kpis">
-    <div class="kpi"><b>2 週內</b><span>決標次日起，完成需求確認與課程計畫書</span></div>
-    <div class="kpi"><b>11/14・21・28</b><span>三場課程（週六 09:00–17:00）</span></div>
-    <div class="kpi"><b>12/10 前</b><span>提交成果報告與 AI 案例成果集</span></div>
-    <div class="kpi"><b>12/15 前</b><span>驗收（履約期限）</span></div>
-  </div>
-
-  <h2>甘特圖</h2>
-  <div class="gantt"><div class="g-inner" id="gantt"></div>
-    <div class="legend">
-      <span><i style="background:var(--teal)"></i>固定日期</span>
-      <span><i style="background:repeating-linear-gradient(45deg,#3E9CA9,#3E9CA9 4px,#5DB0BB 4px,#5DB0BB 8px)"></i>依決標日起算（示意）</span>
-      <span><i style="background:var(--orange)"></i>課程與驗收節點</span>
-      <span><i style="background:var(--mint)"></i>課後 30 天諮詢</span>
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">新竹臺大分院｜深耕・生成式 AI 提升行政效能</p>
+      <h1>不是聊天，<br><em>是交辦。</em></h1>
+      <p class="lead">從本院前期需求盤點的<b>八項單位痛點</b>出發，三門課、每門 7 小時、至少七成實作。同仁離開教室時，手上是自己業務的<b>模板、查詢與流程</b>，不是一疊講義。</p>
+      <div class="cta">
+        <a class="btn primary" href="#courses">看三門課程</a>
+        <a class="btn" href="#timeline">執行時程</a>
+      </div>
+    </div>
+    <div class="brief rv" aria-label="第三門課的交辦範例">
+      <div class="chrome"><i></i><i></i><i></i><span>第三門 U5・交辦給 AI 編程代理</span></div>
+      <p class="ask">請先讀本資料夾的 <code>agent.md</code>，依其中的公文格式與用語規範作業。讀取「名單.xlsx」，對期限在 3 天內且狀態不是「完成」的每一列，用範本產生一份催辦函。完成後在 <code>log.md</code> 追加處理筆數與略過原因。遇到欄位空白先列出來問我，不要自行猜測。</p>
+      <div class="files">
+        <div><code>agent.md</code>單位規矩：格式、用語、資料分級</div>
+        <div><code>SKILL.md</code>重複任務寫成可重跑的指令</div>
+        <div><code>log.md</code>每次交辦與結果都留痕</div>
+      </div>
+      <div class="done"><span>到期案件一次產生催辦函</span><span>名單原檔不修改</span><span>交辦紀錄自動寫入 log.md</span></div>
+      <div class="cap">節錄自服務建議書 3.6 Prompt 範例（模擬資料）</div>
     </div>
   </div>
+</div>
 
-  <h2>五個階段（點選查看工作項目）</h2>
-  <div class="stages" id="stages"></div>
-  <div class="detail" id="detail"></div>
+<div class="stats" aria-label="課程規模">
+  <div class="wrap">
+    <div class="stat"><b>3<small>門</small></b><span>前後銜接，每門可獨立參加</span></div>
+    <div class="stat"><b>21<small>小時</small></b><span>三場週六實體課程</span></div>
+    <div class="stat"><b>70<small>%</small></b><span>以上為親手實作</span></div>
+    <div class="stat"><b>8<small>項</small></b><span>單位痛點逐項對應</span></div>
+    <div class="stat"><b>60<small>則+</small></b><span>本院情境 Prompt 範例</span></div>
+  </div>
+</div>
+
+<main>
+
+<!-- 01 痛點 -->
+<section class="sec" id="pains">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">01</div>
+      <div>
+        <h2>課程不從工具出發，<br>從各單位的痛點出發。</h2>
+        <p>本院於課程規劃前已訪談行政單位種子人員。每一項盤點出的痛點，都有一門主責課程、一個課堂實作、一個帶得回單位的產出。分組選題就從這八項開始，學員在課堂上做的，就是自己單位的事。</p>
+      </div>
+    </div>
+    <div class="indent">
+      <div class="pains" id="painList"></div>
+      <p class="pains-note">點選任一項查看課堂實作與帶回的產出。需求確認會議另行提出的痛點，於教材確認前納入；三門課各保留一個「本院指定案例」時段。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 卡關 -->
+<section class="sec" id="frictions">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">02</div>
+      <div>
+        <h2>同仁用 AI 卡住的地方，<br>就是課程設計的起點。</h2>
+        <p>會用 ChatGPT 聊天，不等於能把 AI 放進每天的行政流程。我們把同仁最常遇到的六個卡關，各自對應到一個課程設計。</p>
+      </div>
+    </div>
+    <div class="fric rv">
+      <div class="fr wide">
+        <div>
+          <div class="q">資料不能上傳，AI 就幫不上忙</div>
+          <div class="k">設計答案｜資料留在院內</div>
+          <p>只向 AI 描述表格有哪些欄位，不給資料內容；由 AI 寫出 VBA 或 Power Query 步驟，在院內電腦本地執行，出錯再請 AI 修正。每門課都教資料三級分級：公開資訊可上傳、其餘先去識別化、個資與財務原始資料不上傳。</p>
+        </div>
+        <svg class="flow" viewBox="0 0 520 250" role="img" aria-label="資料留在院內電腦，只把欄位結構傳給生成式 AI，AI 回傳 VBA 巨集在本地執行">
+          <rect x="8" y="20" width="230" height="210" rx="18" fill="#E2F0EE" stroke="#0E7B7B" stroke-width="1.5"/>
+          <text x="123" y="52" text-anchor="middle" font-size="15" font-weight="700" fill="#0E7B7B" font-family="Noto Sans TC, sans-serif">院內電腦</text>
+          <rect x="40" y="72" width="166" height="96" rx="8" fill="#fff" stroke="#9CCFCB"/>
+          <g stroke="#CFE6E3"><line x1="40" y1="96" x2="206" y2="96"/><line x1="40" y1="120" x2="206" y2="120"/><line x1="40" y1="144" x2="206" y2="144"/><line x1="96" y1="72" x2="96" y2="168"/><line x1="151" y1="72" x2="151" y2="168"/></g>
+          <rect x="40" y="72" width="166" height="24" rx="8" fill="#0E7B7B" opacity=".85"/>
+          <text x="123" y="200" text-anchor="middle" font-size="13.5" fill="#14293A" font-family="Noto Sans TC, sans-serif">資料不出院內・本地執行</text>
+          <rect x="350" y="80" width="160" height="90" rx="45" fill="#14293A"/>
+          <text x="430" y="131" text-anchor="middle" font-size="16" font-weight="700" fill="#fff" font-family="Noto Sans TC, sans-serif">生成式 AI</text>
+          <path d="M246 92 C 290 70, 310 70, 344 96" fill="none" stroke="#0E7B7B" stroke-width="2"/>
+          <path d="M338 88 l8 9 -12 2" fill="none" stroke="#0E7B7B" stroke-width="2"/>
+          <text x="296" y="62" text-anchor="middle" font-size="13" fill="#0E7B7B" font-family="Noto Sans TC, sans-serif">只傳欄位結構</text>
+          <path d="M344 156 C 310 184, 290 184, 246 162" fill="none" stroke="#C8692E" stroke-width="2"/>
+          <path d="M254 156 l-9 6 10 5" fill="none" stroke="#C8692E" stroke-width="2"/>
+          <text x="296" y="206" text-anchor="middle" font-size="13" fill="#C8692E" font-family="Noto Sans TC, sans-serif">回傳 VBA／查詢步驟</text>
+        </svg>
+      </div>
+      <div class="fr">
+        <div class="q">每次都要重寫一次 Prompt</div>
+        <div class="k">設計答案｜部門專用 AI 助理</div>
+        <p>把單位 SOP、格式與常見問答放進 Gemini Gem，做成採購問答、公文格式、訓練報名客服等單位助理，同組測試後可分享給整個單位。</p>
+      </div>
+      <div class="fr">
+        <div class="q">AI 不照我們的規矩做事</div>
+        <div class="k">設計答案｜Agent 工作資料夾</div>
+        <p>把公文格式、用語、禁止事項與「不可上傳的欄位」寫進 agent.md，讓 AI Agent 每次作業都遵守；每次交辦的結果自動留在 log.md。</p>
+      </div>
+      <div class="fr">
+        <div class="q">沒有程式基礎，Agent 太難</div>
+        <div class="k">設計答案｜雙軌分組</div>
+        <p>第三門分進階組與應用組。進階組做出能運作的流程；應用組完成流程需求規格書，並以 Gemini Canvas 做出原型畫面。兩者都是一件完整的流程改善成果。</p>
+      </div>
+      <div class="fr">
+        <div class="q">免費版額度不夠、Copilot 席次有限</div>
+        <div class="k">設計答案｜免費工具為主線</div>
+        <p>主線以免費版即可完成，Copilot 與付費版列為延伸示範。每個實作單元標示至少兩種免費工具的替代路徑，30 人同時操作時由助教巡場協助切換。</p>
+      </div>
+      <div class="fr wide" style="grid-template-columns:1fr">
+        <div>
+          <div class="q">上完課很有感，回單位就沒人推</div>
+          <div class="k">設計答案｜種子人才機制</div>
+          <p>每場最後兩小時是分組工作坊，每組做出一件自己單位的改善案例並上台發表；課後 30 天諮詢、2 個工作天內回覆，並交付每門 20 分鐘的轉授簡報，讓種子人才回單位能自己講一次。詳見 <a href="#seed">05 種子人才</a>。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 AI Agent -->
+<section class="sec" id="agent">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">03</div>
+      <div>
+        <h2>把 AI Agent 當成新同事：<br>給規矩、給範本、要紀錄。</h2>
+        <p>AI 編程代理不是問答，是把任務交給它在你的電腦上完成。第三門課教的不只是工具，是一套讓 Agent 每次都照單位規矩做事的工作習慣。</p>
+      </div>
+    </div>
+    <div class="agent indent">
+      <div class="rv">
+        <p class="lede">一件行政流程，拆成<em>觸發、處理、輸出</em>三段，就知道哪裡交給 AI、哪裡必須留給人。</p>
+        <div class="steps3">
+          <div><b>觸發</b><span>期限到了、會議開完、月底結算</span></div>
+          <div><b>處理</b><span>讀名單、比資料、套範本、算指標</span></div>
+          <div><b>輸出</b><span>一疊催辦函、一份月報、一張待辦表</span></div>
+        </div>
+        <p class="tools">三個多部門主題依單位選做：<b>A 批次文書</b>（一張名單＋範本，一次產生通知或公告）、<b>B 月報產生器</b>（多份指標檔，產生統計、圖表與月報）、<b>C 逐字稿 → 待辦 → 催辦</b>。<br>實作工具為免費、有圖形介面的 Antigravity；Claude Code 與 Codex 由講師以同一件行政任務示範比較；無法安裝軟體時改用瀏覽器版 Gemini Canvas 完成同一產出。</p>
+      </div>
+      <div class="folder rv" aria-label="單位 Agent 資料夾範本">
+        <div class="path">📁 採購組_Agent/</div>
+        <div class="file"><code>agent.md</code><p><b>單位規矩。</b>SOP、公文格式、用語、禁止事項與資料分級；第一門課做好的公文與會議紀錄格式，直接寫進這裡。</p></div>
+        <div class="file"><code>SKILL.md</code><p><b>可重跑的任務。</b>把「產生催辦函」這類重複工作寫成固定指令，下個月換一份名單就能再跑一次。</p></div>
+        <div class="file"><code>log.md</code><p><b>交辦留痕。</b>每次處理幾筆、略過幾筆、原因是什麼，都留下紀錄，事後查得到、交接得清楚。</p></div>
+        <div class="file"><code>README</code><p><b>交接給資訊室。</b>成果以「資料夾＋README＋案例卡」交付，後續由資訊室或進階同仁接手實作。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 三門課程 -->
+<section class="sec" id="courses">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">04</div>
+      <div>
+        <h2>三門課，每一小時一個產出。</h2>
+        <p>第一門建立提問與文書格式，第二門處理資料與報表，第三門以 AI Agent 把重複作業批次化。三門前後銜接，但每門都能獨立參加、當天完成產出。</p>
+      </div>
+    </div>
+    <div class="courses" id="courseList"></div>
+    <div class="principles rv">
+      <div><b>≥ 70%</b><span>實作比例。講授每門合計不超過 2 小時，講一段、做一段。</span></div>
+      <div><b>Excel 2016</b><span>第二門全部以院內版本可執行的功能設計，不依賴 365 獨有函式。</span></div>
+      <div><b>模擬資料</b><span>練習檔仿本院常見報表欄位結構製作；不直接使用公開教材。</span></div>
+      <div><b>Windows 筆電</b><span>以同仁自有筆電完成，不依賴電腦教室；課前一週提供環境檢查表。</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 種子人才 -->
+<section class="sec" id="seed">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">05</div>
+      <div>
+        <h2>三場課只是起點。</h2>
+        <p>本院的目標是培育各行政單位的 AI 種子人才，形成跨單位推動的能量。培育分課前、課中、課後三段，每一段都有可檢核的動作。</p>
+      </div>
+    </div>
+    <div class="seed rv">
+      <div class="phase">
+        <div class="when">課前</div>
+        <h3>前測分組，<br>每個人從自己的起點開始</h3>
+        <ul>
+          <li>10 分鐘線上前測：AI 使用頻率、Excel 熟悉度、單位主要痛點</li>
+          <li>同單位優先同組，每組 4–6 人，配置一位經驗較多的同仁</li>
+          <li>第三門依前測設進階組與應用組雙軌</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="when">課中</div>
+        <h3>每小時一個產出，<br>每組一件改善案例</h3>
+        <ul>
+          <li>每場最後兩小時為分組工作坊，選題、實作、發表、記錄</li>
+          <li>每組上台 3 分鐘，跨單位聽彼此的案例</li>
+          <li>改善案例卡當場繳交，三場累積成本院 AI 案例成果集</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="when">課後</div>
+        <h3>30 天諮詢，<br>種子人才回單位能自己講</h3>
+        <ul>
+          <li>課後 30 天諮詢，專案經理 2 個工作天內回覆</li>
+          <li>推廣工具包：每門 20 分鐘轉授簡報、案例成果集、常見問題集</li>
+          <li>成果報告附本院下一階段推動建議</li>
+        </ul>
+      </div>
+    </div>
+    <p class="quote rv">本院要的不是一場 AI 工具介紹，<br>而是三件可以驗收的改變。<small>每位學員親手操作・每組一件改善案例・課後各單位有人能繼續推</small></p>
+  </div>
+</section>
+
+<!-- 06 時程 -->
+<div class="tl-band">
+<section class="sec" id="timeline">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">06</div>
+      <div>
+        <h2>執行時程：五個階段，<br>12 月 15 日前驗收。</h2>
+        <p>依服務建議書 2.5 繪製，課程日期以候選 B 排定。實際日期依本院行事曆與會議室檔期，於需求確認會議定案。</p>
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><b>2 週內</b><span>決標次日起，完成需求確認與課程計畫書</span></div>
+      <div class="kpi"><b>11/14・21・28</b><span>三場課程（週六 09:00–17:00）</span></div>
+      <div class="kpi"><b>12/10 前</b><span>提交成果報告與 AI 案例成果集</span></div>
+      <div class="kpi"><b>12/15 前</b><span>驗收（履約期限）</span></div>
+    </div>
+
+    <div class="gantt"><div class="g-inner" id="gantt"></div>
+      <div class="legend">
+        <span><i style="background:var(--teal)"></i>固定日期</span>
+        <span><i style="background:repeating-linear-gradient(45deg,#3E9CA9,#3E9CA9 4px,#67B4BE 4px,#67B4BE 8px)"></i>依決標日起算（示意）</span>
+        <span><i style="background:var(--orange)"></i>課程與驗收節點</span>
+        <span><i style="background:#A7D8D4"></i>課後 30 天諮詢</span>
+      </div>
+    </div>
+
+    <div class="stages" id="stages" role="group" aria-label="五個階段"></div>
+    <div class="detail" id="detail" aria-live="polite"></div>
+    <p class="tl-note">斜紋長條為依決標日起算的階段，位置僅供示意。點選階段可查看工作項目、本院配合事項與產出。</p>
+  </div>
+</section>
+</div>
+
+<!-- 07 團隊 -->
+<section class="sec" id="team" style="padding-top:96px">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">07</div>
+      <div>
+        <h2>執行團隊</h2>
+        <p>兩位主講講師互為備援；另有助教一名全程巡場，專案行政負責簽到、紀錄與教材。</p>
+      </div>
+    </div>
+    <div class="team rv">
+      <div class="member org">
+        <div class="role">投標廠商</div>
+        <h3>智谷網絡股份有限公司</h3>
+        <p>成立於 1996 年。2024 年 4 月至 2026 年 8 月執行 62 個 AI 教育訓練與導入專案，服務 36 家組織、15 個產業，含公部門與醫療院所。專案負責人：執行長林峻民。</p>
+      </div>
+      <div class="member">
+        <div class="role">專案經理・第一、三門主講</div>
+        <h3>趙建翔</h3>
+        <p>統籌課程設計、需求確認與成果報告。近兩年 AI 授課 283 小時、學員逾 1,455 人，包括中央健康保險署。</p>
+      </div>
+      <div class="member">
+        <div class="role">第二門主講</div>
+        <h3>鄭淳詩</h3>
+        <p>大學專任教師，AI 與大數據專書 5 冊，含臺大精準醫學推動中心出版之智慧醫療專書；具 ISO 27001 主導稽核員資格。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
-<footer>智谷網絡股份有限公司｜GH151160 執行時程｜依服務建議書 2.5 製作</footer>
+
+<footer>
+  <div class="wrap">
+    <div><b>智谷網絡股份有限公司</b><br>案號 GH151160｜國立臺灣大學醫學院附設醫院新竹臺大分院<br>深耕-生成式 AI 提升行政效能教育訓練暨行政流程優化專案</div>
+    <div>本頁內容依本公司服務建議書整理，<br>實際日期與內容以需求確認會議定案為準。</div>
+  </div>
+</footer>
 
 <script>
+/* ── 八項痛點（建議書 2.3） ── */
+const C = { 1: ["第一門", "var(--c1)"], 2: ["第二門", "var(--c2)"], 3: ["第三門", "var(--c3)"] };
+const PAINS = [
+  ["醫療事務室・病歷資訊管理室", "與健保資料庫串接後的資料需人工轉譯、整理成報表，重複且易錯", [2], "以去識別化的申報資料格式為範例，用 Power Query 建立「匯入 → 欄位轉譯 → 輸出報表」的可重複查詢", "一支每月按「重新整理」即完成的 Power Query 查詢"],
+  ["各科部・行政單位", "科部報表需人工彙整多份檔案", [2, 3], "資料夾內多份格式相同的科部報表一次合併、統一欄位、產生彙總表；第三門由 AI Agent 讀取多份檔案自動產生月報", "資料夾合併查詢＋彙總樞紐表；月報產生器"],
+  ["秘書室・各單位", "會議紀錄撰寫耗時，且決議事項無法自動觸發後續提醒", [1, 3], "逐字稿依本院紀錄格式整理決議、待辦、負責人、期限；第三門由 AI Agent 抽出待辦表，對 3 天內到期者批次產生催辦通知", "會議紀錄 Prompt 模板；「逐字稿 → 待辦 → 催辦通知」批次工具"],
+  ["總務室採購", "廠商報價差異分析靠人工比對；採購案執行進度需人工追蹤提醒", [1, 2, 3], "採購前以深度研究做廠商與價格區間調查；多家報價抽取項目與單價做差異分析；到期案件由 AI Agent 批次產生催辦函", "研究題目模板；報價比較表模板；催辦函批次工具"],
+  ["總務室經管", "經管資料涉及財產與帳務，不便上傳外部 AI，需本地程式或模板替代", [2, 3], "不上傳資料，只向 AI 描述表格結構，由 AI 產生 VBA 或 Power Query 步驟在院內電腦本地執行；把「不可上傳欄位」寫入 agent.md", "一支本地執行的 VBA 巨集；資料分級操作卡與 agent.md 條文"],
+  ["計畫室", "效益分析、財務分析與各項指標需手動計算，缺乏儀表板", [2, 3], "以樞紐分析、圖表與交叉分析篩選器建立可按月更新的指標儀表板；第三門由 AI Agent 讀指標檔自動產生月報敘述與圖表", "一頁式 Excel 儀表板；月報產生器"],
+  ["安全衛生室", "員工健檢異常數值需逐筆追蹤；職安法規期限需人工提醒", [2, 3], "健檢資料表以條件格式與篩選自動標出異常與應追蹤名單（去識別化範例）；AI Agent 批次產生追蹤通知與法規到期提醒", "異常追蹤表模板；通知與提醒批次工具"],
+  ["教學部・醫療品質・資訊室", "教育訓練行政、品質指標月報、資訊需求單等文書與統計工作量大", [1, 2, 3], "訓練公告與簽呈依本院格式起草；滿意度與品質指標以樞紐自動統計，月報敘述經 Gamma 生成簡報；AI Agent 批次產生公告或指標月報", "公文與公告 Prompt 模板；Gamma 簡報；月報產生器"],
+];
+document.getElementById("painList").innerHTML = PAINS.map(([u, p, cs, how, out], i) =>
+  `<div class="pain rv" role="button" tabindex="0" aria-expanded="false">
+     <div class="n">${String(i + 1).padStart(2, "0")}</div><div class="u">${u}</div><div class="p">${p}</div><div class="x" aria-hidden="true">＋</div>
+     <div class="more"><div><h4>課堂實作</h4><p>${cs.map((c) => `<span class="tag" style="background:${C[c][1]}">${C[c][0]}</span>`).join("")}<br>${how}</p></div><div><h4>帶回單位的產出</h4><p class="out">${out}</p></div></div>
+   </div>`).join("");
+document.querySelectorAll(".pain").forEach((el) => {
+  const tog = () => el.setAttribute("aria-expanded", el.getAttribute("aria-expanded") !== "true");
+  el.addEventListener("click", tog);
+  el.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); tog(); } });
+});
+document.querySelector(".pain").setAttribute("aria-expanded", "true");
+
+/* ── 三門課程（建議書 3.2–3.4） ── */
+const COURSES = [
+  { c: "var(--c1)", n: "第一門・7 小時", t: "生成式 AI 提升行政工作效率", who: "主講　趙建翔",
+    g: "讓 AI 產出符合本院格式的公文、Email 與會議紀錄，以深度研究與 NotebookLM 完成附來源的資料蒐集，並知道哪些資料可以上傳、哪些不能。",
+    u: [["行政 AI 工作觀與提示詞進階", "個人 Prompt 卡"], ["行政公文與簽呈", "公文草稿＋格式檢核 Prompt"], ["Email 與會議紀錄", "會議紀錄模板＋待辦清單"], ["AI 深度研究 × 行政資料蒐集", "附來源的研究摘要"], ["NotebookLM 長文件解讀", "單位法規筆記本"], ["簡報與報表敘事 × Gamma", "月報敘述＋Gamma 簡報"], ["分組工作坊：行政案例演練", "每組一件改善案例卡"]],
+    tech: "免費版 ChatGPT／Gemini、Gemini Deep Research、NotebookLM、Gamma", ws: [6] },
+  { c: "var(--c2)", n: "第二門・7 小時", t: "AI × Excel 行政自動化", who: "主講　鄭淳詩",
+    g: "讓 AI 協助寫公式、建立 Power Query 查詢與 VBA 巨集，把資料轉譯、多檔彙整、差異分析與儀表板變成可重複執行的作業；資料不離開院內電腦。",
+    u: [["讓 AI 讀懂你的表：AI 公式", "公式提問模板＋對照卡"], ["資料清理與轉譯：Power Query", "可重複執行的轉譯查詢"], ["多檔彙整", "資料夾合併查詢＋樞紐表"], ["AI 寫 VBA：本地自動化", "3 支可重用 VBA 巨集"], ["差異分析與異常追蹤", "報價差異＋異常追蹤模板"], ["指標儀表板", "一頁式 Excel 儀表板"], ["分組工作坊：每組一張自動化報表", "每組一件自動化報表"]],
+    tech: "Excel 2016（Power Query、VBA、樞紐分析）、免費版生成式 AI", ws: [6] },
+  { c: "var(--c3)", n: "第三門・7 小時", t: "AI 工作流程優化", who: "主講　趙建翔　・　進階組／應用組雙軌",
+    g: "把一項行政流程拆成觸發、處理、輸出，建立部門專用 AI 助理，以 agent.md／log.md／SKILL.md 管理 AI Agent，做出符合自己單位情境的批次作業原型。",
+    u: [["流程拆解與 AI Agent 概念", "個人流程圖"], ["自訂 AI 助理", "可分享的單位助理"], ["AI 編程代理總覽與環境建置", "第一個完成的交辦任務"], ["AI Agent 工作資料夾習慣", "單位 Agent 資料夾範本"], ["Agent 批次作業：多部門主題", "依單位選做的批次工具"], ["Prototype 工作坊（雙軌）", "每組一件流程改善成果"], ["成果發表與推廣計畫", "回單位後 30 天行動表"]],
+    tech: "Gemini Gem、Antigravity、Gemini Canvas；Claude Code、Codex 由講師示範", ws: [5, 6] },
+];
+document.getElementById("courseList").innerHTML = COURSES.map((k) =>
+  `<article class="course rv" style="--c:${k.c}">
+     <div class="cn">${k.n}</div><h3>${k.t}</h3><div class="who">${k.who}</div><p class="goal">${k.g}</p>
+     <ol class="units">${k.u.map(([t, o], i) => `<li${k.ws.includes(i) ? ' class="ws"' : ""}><span>${t}<small>產出：${o}</small></span></li>`).join("")}</ol>
+     <div class="tech">${k.tech}</div>
+   </article>`).join("");
+
+/* ── 執行時程（建議書 2.5，候選 B） ── */
 const STAGES = [
   { n: "階段一", t: "需求確認與課程設計", d: "決標次日起 2 週內", rel: true, s: "2026-10-15", e: "2026-10-29",
     work: ["需求確認會議 1 場（邀請前期受訪單位代表）", "確認學員名單與單位組成、前測問卷發放", "確認指定案例與練習資料之提供方式", "依會議結果調整教材與案例", "提出課程計畫書"],
@@ -133,7 +637,7 @@ const STAGES = [
 const START = new Date("2026-10-01"), END = new Date("2027-01-01");
 const span = END - START;
 const pct = (d) => ((new Date(d) - START) / span) * 100;
-
+const LW = 190;
 function renderGantt() {
   const g = document.getElementById("gantt");
   const months = [["2026-10-16", "10 月"], ["2026-11-15", "11 月"], ["2026-12-16", "12 月"]];
@@ -143,10 +647,10 @@ function renderGantt() {
     let inner = ["2026-11-01", "2026-12-01"].map((d) => `<div class="grid-line" style="left:${pct(d)}%"></div>`).join("");
     if (st.days) inner += st.days.map((d) => `<div class="dot" style="left:${pct(d) + 0.55}%" title="${d}"></div>`).join("");
     else inner += `<div class="bar ${st.rel ? "rel" : st.hot ? "hot" : ""}" style="left:${pct(st.s)}%;width:${pct(st.e) - pct(st.s) + 1.1}%">${st.bt || st.d}</div>`;
-    if (st.consult) inner += `<div class="bar soft" style="top:40px;height:10px;padding:0;left:${pct(st.consult[0])}%;width:${pct(st.consult[1]) - pct(st.consult[0]) + 1.1}%" title="課後 30 天諮詢 11/29–12/28"></div>`;
+    if (st.consult) inner += `<div class="bar soft" style="top:44px;height:9px;padding:0;left:${pct(st.consult[0])}%;width:${pct(st.consult[1]) - pct(st.consult[0]) + 1.1}%" title="課後 30 天諮詢 11/29–12/28"></div>`;
     html += `<div class="g-row" data-i="${i}"><div class="g-label">${st.n}　${st.t}<small>${st.d}</small></div><div class="track">${inner}</div></div>`;
   });
-  const at = (p) => `left:calc(170px + (100% - 170px) * ${p / 100})`;
+  const at = (p) => `left:calc(${LW}px + (100% - ${LW}px) * ${p / 100})`;
   html += `<div class="deadline" style="${at(pct("2026-12-15") + 1.1)}"><em>12/15 履約期限</em></div>`;
   const today = new Date();
   if (today >= START && today < END) html += `<div class="today" style="${at(pct(today.toISOString().slice(0, 10)))}"><em>今天</em></div>`;
@@ -155,7 +659,7 @@ function renderGantt() {
 }
 function renderStages() {
   document.getElementById("stages").innerHTML = STAGES.map((st, i) =>
-    `<div class="stage ${st.hot ? "hot" : ""}" data-i="${i}"><div class="n">${st.n}</div><div class="t">${st.t}</div><div class="d">${st.d}</div></div>`).join("");
+    `<button type="button" class="stage ${st.hot ? "hot" : ""}" data-i="${i}" aria-pressed="false"><span class="n">${st.n}</span><span class="t">${st.t}</span><span class="d">${st.d}</span></button>`).join("");
   document.querySelectorAll(".stage").forEach((c) => c.addEventListener("click", () => show(+c.dataset.i)));
 }
 function show(i) {
@@ -164,10 +668,15 @@ function show(i) {
   document.getElementById("detail").innerHTML =
     `<div class="head">${st.n}　${st.t}<span>${st.d}</span></div>` +
     `<div><h3>工作項目</h3>${li(st.work)}</div><div><h3>本院配合事項</h3>${li(st.coop)}</div><div><h3>產出</h3>${li(st.out)}</div>`;
-  document.querySelectorAll(".stage").forEach((c) => c.classList.toggle("active", +c.dataset.i === i));
+  document.querySelectorAll(".stage").forEach((c) => c.setAttribute("aria-pressed", +c.dataset.i === i));
   document.querySelectorAll(".g-row").forEach((r) => r.classList.toggle("active", +r.dataset.i === i));
 }
 renderGantt(); renderStages(); show(2);
+
+/* ── reveal on scroll ── */
+const io = "IntersectionObserver" in window ? new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" }) : null;
+document.querySelectorAll(".rv").forEach((el) => io ? io.observe(el) : el.classList.add("in"));
+if (location.hash) document.querySelectorAll(".rv").forEach((el) => el.classList.add("in"));
 </script>
 </body>
 </html>
