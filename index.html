@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GH151160 執行時程｜智谷網絡</title>
+<meta name="description" content="GH151160 深耕-生成式 AI 提升行政效能教育訓練暨行政流程優化專案：執行時程（依服務建議書 2.5）">
+<style>
+  :root {
+    --ink: #1B3A4B; --teal: #0E7B7B; --teal2: #3E9CA9; --mint: #A7D8D4; --aqua: #EEF8F8;
+    --orange: #E07B39; --cream: #FFF4E6; --grey: #5E7C80; --line: #D6E9E8; --bg: #F7FBFB; --card: #FFFFFF;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", system-ui, sans-serif; line-height: 1.6; }
+  header { background: linear-gradient(120deg, var(--teal), var(--teal2)); color: #fff; padding: 28px 16px 24px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  header .wrap { padding: 0; }
+  .kicker { font-size: 14px; opacity: .9; letter-spacing: .04em; }
+  h1 { margin: 6px 0 4px; font-size: clamp(22px, 3.4vw, 32px); line-height: 1.3; }
+  .sub { font-size: 15px; opacity: .95; }
+  .vendor { display: inline-block; margin-top: 12px; background: rgba(255,255,255,.18); border-radius: 999px; padding: 4px 14px; font-size: 14px; font-weight: 700; }
+  main { padding: 24px 0 40px; }
+  .note { background: var(--cream); border-left: 5px solid var(--orange); border-radius: 8px; padding: 12px 16px; font-size: 15px; margin-bottom: 20px; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+  .kpi { background: var(--card); border-radius: 12px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(14,123,123,.10); }
+  .kpi b { display: block; font-size: 24px; color: var(--orange); line-height: 1.2; }
+  .kpi span { font-size: 14px; color: var(--grey); }
+  h2 { font-size: 20px; margin: 28px 0 12px; color: var(--teal); }
+  /* Gantt */
+  .gantt { background: var(--card); border-radius: 12px; padding: 16px; box-shadow: 0 1px 3px rgba(14,123,123,.10); overflow-x: auto; }
+  .g-inner { min-width: 720px; position: relative; }
+  .g-head, .g-row { display: grid; grid-template-columns: 170px 1fr; align-items: center; }
+  .g-head { font-size: 13px; color: var(--grey); border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+  .months { position: relative; height: 22px; }
+  .months span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
+  .g-row { min-height: 52px; border-bottom: 1px dashed var(--line); cursor: pointer; }
+  .g-row:hover, .g-row.active { background: var(--aqua); }
+  .g-label { font-size: 13px; font-weight: 700; padding: 6px 8px 6px 4px; }
+  .g-label small { display: block; font-weight: 400; color: var(--grey); font-size: 12px; }
+  .track { position: relative; height: 52px; }
+  .bar { position: absolute; top: 14px; height: 24px; border-radius: 6px; background: var(--teal); color: #fff; font-size: 12px; padding: 2px 8px; white-space: nowrap; overflow: hidden; }
+  .bar.rel { background: repeating-linear-gradient(45deg, var(--teal2), var(--teal2) 6px, #5DB0BB 6px, #5DB0BB 12px); }
+  .bar.hot { background: var(--orange); }
+  .bar.soft { background: var(--mint); color: var(--ink); }
+  .dot { position: absolute; top: 15px; width: 22px; height: 22px; margin-left: -11px; border-radius: 50%; background: var(--orange); border: 3px solid #fff; box-shadow: 0 0 0 2px var(--orange); }
+  .grid-line { position: absolute; top: 28px; bottom: 0; width: 1px; background: var(--line); }
+  .deadline { position: absolute; top: 28px; bottom: 0; width: 0; border-left: 2px dashed var(--orange); z-index: 2; }
+  .deadline em { position: absolute; top: 2px; left: 4px; font-size: 12px; color: var(--orange); font-style: normal; font-weight: 700; white-space: nowrap; }
+  .today { position: absolute; top: 28px; bottom: 0; width: 2px; background: var(--ink); z-index: 2; }
+  .today em { position: absolute; top: 2px; left: 4px; font-size: 12px; color: var(--ink); font-style: normal; white-space: nowrap; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--grey); margin-top: 10px; }
+  .legend i { display: inline-block; width: 18px; height: 10px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+  /* stage detail */
+  .stages { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .stage { background: var(--card); border-radius: 12px; padding: 12px; border-top: 5px solid var(--teal); cursor: pointer; box-shadow: 0 1px 3px rgba(14,123,123,.10); }
+  .stage.hot { border-top-color: var(--orange); }
+  .stage.active { outline: 2px solid var(--teal2); }
+  .stage .n { font-size: 13px; color: var(--grey); }
+  .stage .t { font-weight: 700; font-size: 15px; }
+  .stage .d { font-size: 13px; color: var(--orange); font-weight: 700; }
+  .detail { margin-top: 14px; background: var(--card); border-radius: 12px; padding: 18px; box-shadow: 0 1px 3px rgba(14,123,123,.10); display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .detail h3 { margin: 0 0 6px; font-size: 15px; color: var(--teal); }
+  .detail ul { margin: 0; padding-left: 20px; font-size: 14px; }
+  .detail .head { grid-column: 1 / -1; font-size: 18px; font-weight: 700; }
+  .detail .head span { color: var(--orange); font-size: 15px; margin-left: 8px; }
+  footer { text-align: center; font-size: 13px; color: var(--grey); padding: 18px 16px 32px; }
+  @media (max-width: 760px) {
+    .kpis { grid-template-columns: repeat(2, 1fr); }
+    .stages { grid-template-columns: 1fr 1fr; }
+    .detail { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="kicker">案號 GH151160｜國立臺灣大學醫學院附設醫院新竹臺大分院</div>
+    <h1>深耕-生成式 AI 提升行政效能教育訓練暨行政流程優化專案｜執行時程</h1>
+    <div class="sub">五階段・三場課程・12 月 15 日前驗收</div>
+    <div class="vendor">智谷網絡股份有限公司</div>
+  </div>
+</header>
+<main class="wrap">
+  <div class="note">本頁依本公司服務建議書 2.5「執行流程與時程」繪製，課程日期以候選 B 排定。實際日期依本院行事曆與會議室檔期，於需求確認會議定案。斜紋長條為依決標日起算的階段，位置僅供示意。</div>
+
+  <div class="kpis">
+    <div class="kpi"><b>2 週內</b><span>決標次日起，完成需求確認與課程計畫書</span></div>
+    <div class="kpi"><b>11/14・21・28</b><span>三場課程（週六 09:00–17:00）</span></div>
+    <div class="kpi"><b>12/10 前</b><span>提交成果報告與 AI 案例成果集</span></div>
+    <div class="kpi"><b>12/15 前</b><span>驗收（履約期限）</span></div>
+  </div>
+
+  <h2>甘特圖</h2>
+  <div class="gantt"><div class="g-inner" id="gantt"></div>
+    <div class="legend">
+      <span><i style="background:var(--teal)"></i>固定日期</span>
+      <span><i style="background:repeating-linear-gradient(45deg,#3E9CA9,#3E9CA9 4px,#5DB0BB 4px,#5DB0BB 8px)"></i>依決標日起算（示意）</span>
+      <span><i style="background:var(--orange)"></i>課程與驗收節點</span>
+      <span><i style="background:var(--mint)"></i>課後 30 天諮詢</span>
+    </div>
+  </div>
+
+  <h2>五個階段（點選查看工作項目）</h2>
+  <div class="stages" id="stages"></div>
+  <div class="detail" id="detail"></div>
+</main>
+<footer>智谷網絡股份有限公司｜GH151160 執行時程｜依服務建議書 2.5 製作</footer>
+
+<script>
+const STAGES = [
+  { n: "階段一", t: "需求確認與課程設計", d: "決標次日起 2 週內", rel: true, s: "2026-10-15", e: "2026-10-29",
+    work: ["需求確認會議 1 場（邀請前期受訪單位代表）", "確認學員名單與單位組成、前測問卷發放", "確認指定案例與練習資料之提供方式", "依會議結果調整教材與案例", "提出課程計畫書"],
+    coop: ["指定會議日期與出席代表", "提供參訓名單", "決定是否提供去識別化案例"],
+    out: ["課程計畫書（課程規劃書、時程、教材架構、需求分析）"] },
+  { n: "階段二", t: "教材確認", d: "第一門課前 10 個工作天", rel: true, s: "2026-10-29", e: "2026-11-13",
+    work: ["三門教材初稿送本院確認", "講師會議（兩位講師＋助教對齊案例、分組、工具版本）", "課前一週提供講師名單、學經歷與授課主題", "教材電子檔交本院轉發學員"],
+    coop: ["審閱教材、轉發電子教材", "提醒學員攜帶筆電並預先註冊免費 AI 帳號"],
+    out: ["三門客製教材電子檔"] },
+  { n: "階段三", t: "三場課程", d: "11/14、11/21、11/28（週六）", hot: true, days: ["2026-11-14", "2026-11-21", "2026-11-28"],
+    work: ["每場 09:00–17:00（7 小時）", "簽到退、執行紀錄表、課堂照片、滿意度調查", "分組成果發表", "課間作業（學員回單位試用）"],
+    coop: ["會議室、投影設備、電源", "學員出席催辦"],
+    out: ["簽到表、執行紀錄表、滿意度分析、每組改善案例"] },
+  { n: "階段四", t: "成果彙整與課後諮詢", d: "成果報告 12/10 前", s: "2026-11-29", e: "2026-12-10", consult: ["2026-11-29", "2026-12-28"],
+    work: ["學習分析（前後測、實作完成率）", "AI 案例成果集（每組一件）", "成果報告與改善建議", "課後 30 天諮詢（自第三場課次日起，至 12/28）"],
+    coop: ["審閱成果報告"],
+    out: ["成果報告、AI 案例成果集、電子教材、課程照片"] },
+  { n: "階段五", t: "驗收", d: "12/15 前", hot: true, s: "2026-12-11", e: "2026-12-15",
+    work: ["提交全部驗收文件（含紙本歸檔版）", "配合驗收補正"],
+    coop: ["辦理驗收"],
+    out: ["驗收合格"] },
+];
+const START = new Date("2026-10-01"), END = new Date("2027-01-01");
+const span = END - START;
+const pct = (d) => ((new Date(d) - START) / span) * 100;
+
+function renderGantt() {
+  const g = document.getElementById("gantt");
+  const months = [["2026-10-16", "10 月"], ["2026-11-15", "11 月"], ["2026-12-16", "12 月"]];
+  let html = '<div class="g-head"><div>階段</div><div class="months">' +
+    months.map(([d, m]) => `<span style="left:${pct(d)}%">${m}</span>`).join("") + "</div></div>";
+  STAGES.forEach((st, i) => {
+    let inner = ["2026-11-01", "2026-12-01"].map((d) => `<div class="grid-line" style="left:${pct(d)}%"></div>`).join("");
+    if (st.days) inner += st.days.map((d) => `<div class="dot" style="left:${pct(d) + 0.55}%" title="${d}"></div>`).join("");
+    else inner += `<div class="bar ${st.rel ? "rel" : st.hot ? "hot" : ""}" style="left:${pct(st.s)}%;width:${pct(st.e) - pct(st.s) + 1.1}%">${st.d}</div>`;
+    if (st.consult) inner += `<div class="bar soft" style="top:40px;height:10px;padding:0;left:${pct(st.consult[0])}%;width:${pct(st.consult[1]) - pct(st.consult[0]) + 1.1}%" title="課後 30 天諮詢 11/29–12/28"></div>`;
+    html += `<div class="g-row" data-i="${i}"><div class="g-label">${st.n}　${st.t}<small>${st.d}</small></div><div class="track">${inner}</div></div>`;
+  });
+  const at = (p) => `left:calc(170px + (100% - 170px) * ${p / 100})`;
+  html += `<div class="deadline" style="${at(pct("2026-12-15") + 1.1)}"><em>12/15 履約期限</em></div>`;
+  const today = new Date();
+  if (today >= START && today < END) html += `<div class="today" style="${at(pct(today.toISOString().slice(0, 10)))}"><em>今天</em></div>`;
+  g.innerHTML = html;
+  g.querySelectorAll(".g-row").forEach((r) => r.addEventListener("click", () => show(+r.dataset.i)));
+}
+function renderStages() {
+  document.getElementById("stages").innerHTML = STAGES.map((st, i) =>
+    `<div class="stage ${st.hot ? "hot" : ""}" data-i="${i}"><div class="n">${st.n}</div><div class="t">${st.t}</div><div class="d">${st.d}</div></div>`).join("");
+  document.querySelectorAll(".stage").forEach((c) => c.addEventListener("click", () => show(+c.dataset.i)));
+}
+function show(i) {
+  const st = STAGES[i];
+  const li = (a) => "<ul>" + a.map((x) => `<li>${x}</li>`).join("") + "</ul>";
+  document.getElementById("detail").innerHTML =
+    `<div class="head">${st.n}　${st.t}<span>${st.d}</span></div>` +
+    `<div><h3>工作項目</h3>${li(st.work)}</div><div><h3>本院配合事項</h3>${li(st.coop)}</div><div><h3>產出</h3>${li(st.out)}</div>`;
+  document.querySelectorAll(".stage").forEach((c) => c.classList.toggle("active", +c.dataset.i === i));
+  document.querySelectorAll(".g-row").forEach((r) => r.classList.toggle("active", +r.dataset.i === i));
+}
+renderGantt(); renderStages(); show(2);
+</script>
+</body>
+</html>
