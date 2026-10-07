@@ -125,7 +125,7 @@ const STAGES = [
     work: ["學習分析（前後測、實作完成率）", "AI 案例成果集（每組一件）", "成果報告與改善建議", "課後 30 天諮詢（自第三場課次日起，至 12/28）"],
     coop: ["審閱成果報告"],
     out: ["成果報告、AI 案例成果集、電子教材、課程照片"] },
-  { n: "階段五", t: "驗收", d: "12/15 前", hot: true, s: "2026-12-11", e: "2026-12-15",
+  { n: "階段五", t: "驗收", d: "12/15 前", bt: "驗收", hot: true, s: "2026-12-11", e: "2026-12-15",
     work: ["提交全部驗收文件（含紙本歸檔版）", "配合驗收補正"],
     coop: ["辦理驗收"],
     out: ["驗收合格"] },
@@ -142,7 +142,7 @@ function renderGantt() {
   STAGES.forEach((st, i) => {
     let inner = ["2026-11-01", "2026-12-01"].map((d) => `<div class="grid-line" style="left:${pct(d)}%"></div>`).join("");
     if (st.days) inner += st.days.map((d) => `<div class="dot" style="left:${pct(d) + 0.55}%" title="${d}"></div>`).join("");
-    else inner += `<div class="bar ${st.rel ? "rel" : st.hot ? "hot" : ""}" style="left:${pct(st.s)}%;width:${pct(st.e) - pct(st.s) + 1.1}%">${st.d}</div>`;
+    else inner += `<div class="bar ${st.rel ? "rel" : st.hot ? "hot" : ""}" style="left:${pct(st.s)}%;width:${pct(st.e) - pct(st.s) + 1.1}%">${st.bt || st.d}</div>`;
     if (st.consult) inner += `<div class="bar soft" style="top:40px;height:10px;padding:0;left:${pct(st.consult[0])}%;width:${pct(st.consult[1]) - pct(st.consult[0]) + 1.1}%" title="課後 30 天諮詢 11/29–12/28"></div>`;
     html += `<div class="g-row" data-i="${i}"><div class="g-label">${st.n}　${st.t}<small>${st.d}</small></div><div class="track">${inner}</div></div>`;
   });
