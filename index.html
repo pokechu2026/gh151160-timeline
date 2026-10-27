@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>不是聊天，是交辦｜深耕 生成式 AI 行政效能課程｜智谷網絡</title>
-<meta name="description" content="GH151160 深耕-生成式 AI 提升行政效能教育訓練暨行政流程優化專案：三門課程、八項單位痛點、AI Agent 工作方法與執行時程（依服務建議書整理）">
+<title>新竹臺大課程規劃</title>
+<meta name="description" content="GH151160 深耕-生成式 AI 提升行政效能教育訓練：三門課程、執行時程、需求確認會議待確認事項、評選答詢落實方式（需求確認會議前預讀）">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap">
@@ -264,6 +264,59 @@ footer b { color: #fff; font-weight: 700; letter-spacing: .06em; }
   .detail { grid-template-columns: 1fr; }
   .principles { grid-template-columns: 1fr 1fr; gap: 20px; }
 }
+
+/* 分頁 */
+.top nav { gap: 6px; }
+.top nav button { font: inherit; font-size: 14px; color: #DCE7EA; background: transparent; border: 1px solid transparent; border-radius: 999px; padding: 5px 14px; cursor: pointer; white-space: nowrap; opacity: .8; }
+.top nav button:hover { opacity: 1; }
+.top nav button[aria-selected="true"] { opacity: 1; background: var(--orange); border-color: var(--orange); color: #fff; }
+.top nav button:focus-visible { outline: 2px solid var(--orange-l); outline-offset: 2px; }
+.panel[hidden] { display: none; }
+.panel > section.sec:first-child { padding-top: 72px; }
+/* 主視覺：圖鋪滿，標題壓在左側空白牆面 */
+.hero.has-img { background: linear-gradient(90deg, rgba(246,244,239,.98) 0%, rgba(246,244,239,.94) 36%, rgba(246,244,239,0) 58%), url(img/00-hero.jpg) right center / auto 100% no-repeat, var(--paper); color: var(--ink); padding: 104px 0 112px; }
+.hero.has-img::after { display: none; }
+.hero.has-img .wrap { grid-template-columns: 1fr; }
+.hero.has-img .wrap > div:first-child { max-width: 470px; }
+.hero.has-img .eyebrow { color: var(--teal); }
+.hero.has-img h1 { color: var(--ink); }
+.hero.has-img h1 em { color: var(--orange); }
+.hero.has-img .lead { color: var(--ink2); }
+.hero.has-img .lead b { color: var(--ink); }
+.hero.has-img .btn:not(.primary) { color: var(--ink); border-color: rgba(20,41,58,.35); }
+.prelude { background: var(--orange-soft); color: var(--ink); font-size: 15px; }
+.prelude .wrap { padding-block: 12px; }
+@media (max-width: 1380px) {
+  .hero.has-img { background: linear-gradient(180deg, rgba(246,244,239,.97) 0%, rgba(246,244,239,.93) calc(100% - 62vw), rgba(246,244,239,0) calc(100% - 38vw)), url(img/00-hero.jpg) 62% bottom / min(100%, 1120px) auto no-repeat, var(--paper); padding: 48px 0 min(58vw, 600px); }
+  .hero.has-img .wrap > div:first-child { max-width: 640px; }
+}
+/* 課程主題圖 */
+.course .cimg { margin: -30px -26px 18px; aspect-ratio: 16 / 9; border-radius: 15px 15px 0 0; overflow: hidden; background: var(--teal-soft); }
+.course .cimg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* 待確認事項 */
+.cgroup { margin-top: 40px; }
+.cgroup h3 { font-family: var(--serif); font-size: 22px; margin: 0 0 12px; display: flex; gap: 10px; align-items: baseline; }
+.cgroup h3 small { font-family: var(--sans); font-size: 13px; color: var(--muted); font-weight: 400; }
+.citems { display: grid; gap: 12px; }
+.citem { background: var(--card); border: 1px solid var(--rule); border-radius: 16px; padding: 18px 20px; display: grid; grid-template-columns: 44px 1fr; gap: 4px 14px; }
+.citem .no { grid-row: span 2; font-family: var(--serif); font-size: 22px; color: var(--orange); line-height: 1.3; }
+.citem .q { font-weight: 700; font-size: 17px; line-height: 1.6; }
+.citem .rec { font-size: 15.5px; color: var(--ink2); line-height: 1.75; }
+.citem .rec b { color: var(--teal); font-weight: 700; margin-right: 6px; }
+/* 答詢落實 */
+.promise { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.pr { background: var(--card); border: 1px solid var(--rule); border-radius: 16px; padding: 20px 22px; }
+.pr .tag2 { font-size: 12.5px; letter-spacing: .12em; color: var(--orange); font-weight: 700; }
+.pr h3 { font-size: 18px; margin: 4px 0 8px; line-height: 1.5; }
+.pr p { margin: 0; font-size: 15.5px; color: var(--ink2); line-height: 1.8; }
+@media (max-width: 720px) {
+  .top .wrap { flex-direction: column; align-items: stretch; height: auto; padding-block: 8px; gap: 6px; }
+  .top nav { display: flex !important; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 0 16px; }
+  .top nav::-webkit-scrollbar { display: none; }
+  .promise { grid-template-columns: 1fr; }
+  .citem { grid-template-columns: 34px 1fr; padding: 16px; }
+  .course .cimg { margin: -30px -26px 16px; }
+}
 </style>
 </head>
 <body>
@@ -271,33 +324,21 @@ footer b { color: #fff; font-weight: 700; letter-spacing: .06em; }
 <header class="top">
   <div class="wrap">
     <div class="brand"><b>智谷網絡</b>　GH151160</div>
-    <nav aria-label="頁內導覽">
-      <a href="#pains">八項痛點</a><a href="#frictions">卡關與解法</a><a href="#agent">AI Agent</a><a href="#courses">三門課程</a><a href="#seed">種子人才</a><a href="#timeline">執行時程</a>
-    </nav>
+    <nav role="tablist" aria-label="分頁"><button role="tab" id="tb-overview" aria-controls="tab-overview" data-tab="overview" aria-selected="true">總覽</button><button role="tab" id="tb-courses" aria-controls="tab-courses" data-tab="courses" aria-selected="false">三門課程</button><button role="tab" id="tb-timeline" aria-controls="tab-timeline" data-tab="timeline" aria-selected="false">執行時程</button><button role="tab" id="tb-confirm" aria-controls="tab-confirm" data-tab="confirm" aria-selected="false">待確認事項</button><button role="tab" id="tb-quality" aria-controls="tab-quality" data-tab="quality" aria-selected="false">團隊與品質</button></nav>
   </div>
 </header>
 
-<div class="hero">
+<div class="panel" id="tab-overview" role="tabpanel" aria-labelledby="tb-overview">
+<div class="hero has-img" role="img" aria-label="行政同仁一起用 AI 處理公文、報表與流程的示意插畫">
   <div class="wrap">
     <div>
       <p class="eyebrow">新竹臺大分院｜深耕・生成式 AI 提升行政效能</p>
       <h1>不是聊天，<br><em>是交辦。</em></h1>
       <p class="lead">從本院前期需求盤點的<b>八項單位痛點</b>出發，三門課、每門 7 小時、至少七成實作。同仁離開教室時，手上是自己業務的<b>模板、查詢與流程</b>，不是一疊講義。</p>
       <div class="cta">
-        <a class="btn primary" href="#courses">看三門課程</a>
-        <a class="btn" href="#timeline">執行時程</a>
+        <a class="btn primary" href="#courses" data-go="courses">看三門課程</a>
+        <a class="btn" href="#confirm" data-go="confirm">待確認事項</a>
       </div>
-    </div>
-    <div class="brief rv" aria-label="第三門課的交辦範例">
-      <div class="chrome"><i></i><i></i><i></i><span>第三門 U5・交辦給 AI 編程代理</span></div>
-      <p class="ask">請先讀本資料夾的 <code>agent.md</code>，依其中的公文格式與用語規範作業。讀取「名單.xlsx」，對期限在 3 天內且狀態不是「完成」的每一列，用範本產生一份催辦函。完成後在 <code>log.md</code> 追加處理筆數與略過原因。遇到欄位空白先列出來問我，不要自行猜測。</p>
-      <div class="files">
-        <div><code>agent.md</code>單位規矩：格式、用語、資料分級</div>
-        <div><code>SKILL.md</code>重複任務寫成可重跑的指令</div>
-        <div><code>log.md</code>每次交辦與結果都留痕</div>
-      </div>
-      <div class="done"><span>到期案件一次產生催辦函</span><span>名單原檔不修改</span><span>交辦紀錄自動寫入 log.md</span></div>
-      <div class="cap">節錄自服務建議書 3.6 Prompt 範例（模擬資料）</div>
     </div>
   </div>
 </div>
@@ -312,6 +353,7 @@ footer b { color: #fff; font-weight: 700; letter-spacing: .06em; }
   </div>
 </div>
 
+<div class="prelude"><div class="wrap">本頁供需求確認會議前預讀，依服務建議書與評選答詢整理。日期與執行細節於需求確認會議確認；服務範圍依契約、服務建議書及答詢承諾辦理。</div></div>
 <main>
 
 <!-- 01 痛點 -->
@@ -346,7 +388,7 @@ footer b { color: #fff; font-weight: 700; letter-spacing: .06em; }
         <div>
           <div class="q">資料不能上傳，AI 就幫不上忙</div>
           <div class="k">設計答案｜資料留在院內</div>
-          <p>只向 AI 描述表格有哪些欄位，不給資料內容；由 AI 寫出 VBA 或 Power Query 步驟，在院內電腦本地執行，出錯再請 AI 修正。每門課都教資料三級分級：公開資訊可上傳、其餘先去識別化、個資與財務原始資料不上傳。</p>
+          <p>只向 AI 描述表格有哪些欄位，不給資料內容；由 AI 寫出 VBA 或 Power Query 步驟，在院內電腦本地執行，出錯再請 AI 修正。每門課都教資料三級分級：公開資訊可上傳、內部資料去識別化後才可使用、個資與財務原始資料不上傳；本案受訓與測試全程使用模擬資料，不取用院方真實資料。</p>
         </div>
         <svg class="flow" viewBox="0 0 520 250" role="img" aria-label="資料留在院內電腦，只把欄位結構傳給生成式 AI，AI 回傳 VBA 巨集在本地執行">
           <rect x="8" y="20" width="230" height="210" rx="18" fill="#E2F0EE" stroke="#0E7B7B" stroke-width="1.5"/>
@@ -389,18 +431,22 @@ footer b { color: #fff; font-weight: 700; letter-spacing: .06em; }
         <div>
           <div class="q">上完課很有感，回單位就沒人推</div>
           <div class="k">設計答案｜種子人才機制</div>
-          <p>每場最後兩小時是分組工作坊，每組做出一件自己單位的改善案例並上台發表；課後 30 天諮詢、2 個工作天內回覆，並交付每門 20 分鐘的轉授簡報，讓種子人才回單位能自己講一次。詳見 <a href="#seed">05 種子人才</a>。</p>
+          <p>每場最後兩小時是分組工作坊，每組做出一件自己單位的改善案例並上台發表；課後 30 天諮詢、2 個工作天內回覆，並交付每門 20 分鐘的轉授簡報，讓種子人才回單位能自己講一次。詳見 <a href="#seed">團隊與品質・種子人才</a>。</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+</main>
+</div>
+<div class="panel" id="tab-courses" role="tabpanel" aria-labelledby="tb-courses" hidden>
+<main>
 <!-- 03 AI Agent -->
 <section class="sec" id="agent">
   <div class="wrap">
     <div class="sec-head rv">
-      <div class="sec-no">03</div>
+      <div class="sec-no">01</div>
       <div>
         <h2>把 AI Agent 當成新同事：<br>給規矩、給範本、要紀錄。</h2>
         <p>AI 編程代理不是問答，是把任務交給它在你的電腦上完成。第三門課教的不只是工具，是一套讓 Agent 每次都照單位規矩做事的工作習慣。</p>
@@ -431,7 +477,7 @@ footer b { color: #fff; font-weight: 700; letter-spacing: .06em; }
 <section class="sec" id="courses">
   <div class="wrap">
     <div class="sec-head rv">
-      <div class="sec-no">04</div>
+      <div class="sec-no">02</div>
       <div>
         <h2>三門課，每一小時一個產出。</h2>
         <p>第一門建立提問與文書格式，第二門處理資料與報表，第三門以 AI Agent 把重複作業批次化。三門前後銜接，但每門都能獨立參加、當天完成產出。</p>
@@ -447,11 +493,59 @@ footer b { color: #fff; font-weight: 700; letter-spacing: .06em; }
   </div>
 </section>
 
+</main>
+</div>
+<div class="panel" id="tab-timeline" role="tabpanel" aria-labelledby="tb-timeline" hidden>
+<main>
+<!-- 06 時程 -->
+<div class="tl-band">
+<section class="sec" id="timeline">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">01</div>
+      <div>
+        <h2>執行時程：五個階段，<br>12 月 15 日前驗收。</h2>
+        <p>依服務建議書 2.5 繪製。議約時間調整後，三場課程<b>建議改為 11/21、11/28、12/5（週六）</b>，依原五階段架構調整，讓教材能在課前 10 個工作天送院方審閱；實際日期依本院行事曆與會議室檔期，於需求確認會議定案。</p>
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><b>10/28–11/3</b><span>需求確認會議（建議）；會後 5 個工作天內提交課程計畫書</span></div>
+      <div class="kpi"><b>11/21・28・12/5</b><span>三場課程建議日期（週六 09:00–17:00）</span></div>
+      <div class="kpi"><b>12/10 前</b><span>提交成果報告與 AI 案例成果集</span></div>
+      <div class="kpi"><b>12/15 前</b><span>驗收（履約期限）</span></div>
+    </div>
+
+    <div class="gantt"><div class="g-inner" id="gantt"></div>
+      <div class="legend">
+        <span><i style="background:var(--teal)"></i>固定日期</span>
+        <span><i style="background:repeating-linear-gradient(45deg,#3E9CA9,#3E9CA9 4px,#67B4BE 4px,#67B4BE 8px)"></i>建議期間（待確認）</span>
+        <span><i style="background:var(--orange)"></i>課程與驗收節點</span>
+        <span><i style="background:#A7D8D4"></i>課後 30 天諮詢</span>
+      </div>
+    </div>
+
+    <div class="stages" id="stages" role="group" aria-label="五個階段"></div>
+    <div class="detail" id="detail" aria-live="polite"></div>
+    <p class="tl-note">斜紋長條為建議期間，於需求確認會議確認。點選階段可查看工作項目、本院配合事項與產出。</p>
+  </div>
+</section>
+</div>
+
+</main>
+</div>
+<div class="panel" id="tab-confirm" role="tabpanel" aria-labelledby="tb-confirm" hidden>
+<main>
+<section class="sec" id="confirm"><div class="wrap"><div class="sec-head"><div class="sec-no">01</div><div><h2>需求確認會議前，<br>想請院方一起確認的事。</h2><p>以下 14 項會影響教材、場地與時程的安排。每一項都附上我們的建議做法，院方可直接同意，或在會議中提出調整；也歡迎先以電子郵件回覆。</p></div></div><div class="indent"><div class="cgroup"><h3>時程與會議<small>敬請協助確認日期，以利安排教材與場地</small></h3><div class="citems"><div class="citem"><div class="no">01</div><div class="q">三場課程日期</div><div class="rec"><b>我們的建議</b>建議 11/21、11/28、12/5（週六 09:00–17:00），12/15 前完成驗收；院方若有其他偏好日期，請於會議中提出。</div></div><div class="citem"><div class="no">02</div><div class="q">需求確認會議日期與出席單位</div><div class="rec"><b>我們的建議</b>建議 10/28–11/3 之間召開，約 1.5 小時，邀請前期受訪單位代表出席；到院或線上皆可。</div></div><div class="citem"><div class="no">03</div><div class="q">院方聯繫窗口</div><div class="rec"><b>我們的建議</b>建議由一位窗口統一聯繫（課程內容、教材送審、場地），行政與契約事項維持總務室。</div></div></div></div><div class="cgroup"><h3>學員<small>決定分組、案例與助教人數</small></h3><div class="citems"><div class="citem"><div class="no">04</div><div class="q">參訓名單與單位組成</div><div class="rec"><b>我們的建議</b>建議三場為同一批學員（每場約 30 人），方便三門課前後銜接；請提供姓名、單位與職稱。</div></div><div class="citem"><div class="no">05</div><div class="q">課前問卷發放</div><div class="rec"><b>我們的建議</b>建議課前 2 週由院方轉發線上問卷連結（約 10 分鐘），結果用於分組與決定第二場起的助教人數。</div></div></div></div><div class="cgroup"><h3>場地與網路<small>決定課程能不能順利操作</small></h3><div class="citems"><div class="citem"><div class="no">06</div><div class="q">上課教室與設備</div><div class="rec"><b>我們的建議</b>需要投影、音響、麥克風，以及足夠 30 台筆電使用的插座；如插座不足，我們可自備延長線。</div></div><div class="citem"><div class="no">07</div><div class="q">院內網路能否連線 AI 服務</div><div class="rec"><b>我們的建議</b>學員以自己的筆電上課，需連線 ChatGPT、Gemini、NotebookLM 等網站。建議課前一週由資訊室協助在教室實測，若有封鎖，改用替代工具或行動網路。</div></div><div class="citem"><div class="no">08</div><div class="q">Copilot 授權與院內 AI 使用規範</div><div class="rec"><b>我們的建議</b>請告知院內是否有 Copilot 授權、可用席次，以及院內對生成式 AI 的使用規範，課程與資料分級提醒會依規範調整。</div></div></div></div><div class="cgroup"><h3>教材與案例<small>讓教材貼近本院實務</small></h3><div class="citems"><div class="citem"><div class="no">09</div><div class="q">各單位正式名稱</div><div class="rec"><b>我們的建議</b>請提供行政單位正式全名清單，課程計畫書、教材與成果報告一律依院方名稱撰寫。</div></div><div class="citem"><div class="no">10</div><div class="q">代表性表單的欄位清單</div><div class="rec"><b>我們的建議</b>請各單位提供 1–2 份常用表單或報表的欄位名稱與資料型態（不含任何資料內容），我們據以製作模擬資料與練習檔。</div></div><div class="citem"><div class="no">11</div><div class="q">教材送審流程</div><div class="rec"><b>我們的建議</b>建議第一門課前 10 個工作天（11/7 前）送審，敬請院方於 11/10 前回覆修改意見；我們於 3 個工作天內修訂，課前一週（11/14 前）交定稿電子檔供院方轉發。請告知送審窗口與檔案格式。</div></div><div class="citem"><div class="no">12</div><div class="q">教材上傳 KMO、TMS 的格式</div><div class="rec"><b>我們的建議</b>依評選答詢，完整電子教材授權上傳院內 KMO 與 TMS；請告知需要的檔案格式或規格。</div></div></div></div><div class="cgroup"><h3>行政</h3><div class="citems"><div class="citem"><div class="no">13</div><div class="q">滿意度問卷格式</div><div class="rec"><b>我們的建議</b>院方如有既有問卷格式，我們依院方格式辦理；沒有的話由我們設計，內容涵蓋需求說明書規定的項目。</div></div><div class="citem"><div class="no">14</div><div class="q">講師與助教入院方式</div><div class="rec"><b>我們的建議</b>上課當天講師、助教的停車與出入方式。</div></div></div></div></div></div></section>
+</main>
+</div>
+<div class="panel" id="tab-quality" role="tabpanel" aria-labelledby="tb-quality" hidden>
+<main>
 <!-- 05 種子人才 -->
 <section class="sec" id="seed">
   <div class="wrap">
     <div class="sec-head rv">
-      <div class="sec-no">05</div>
+      <div class="sec-no">01</div>
       <div>
         <h2>三場課只是起點。</h2>
         <p>本院的目標是培育各行政單位的 AI 種子人才，形成跨單位推動的能量。培育分課前、課中、課後三段，每一段都有可檢核的動作。</p>
@@ -490,49 +584,16 @@ footer b { color: #fff; font-weight: 700; letter-spacing: .06em; }
   </div>
 </section>
 
-<!-- 06 時程 -->
-<div class="tl-band">
-<section class="sec" id="timeline">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <div class="sec-no">06</div>
-      <div>
-        <h2>執行時程：五個階段，<br>12 月 15 日前驗收。</h2>
-        <p>依服務建議書 2.5 繪製，課程日期以候選 B 排定。實際日期依本院行事曆與會議室檔期，於需求確認會議定案。</p>
-      </div>
-    </div>
 
-    <div class="kpis">
-      <div class="kpi"><b>2 週內</b><span>決標次日起，完成需求確認與課程計畫書</span></div>
-      <div class="kpi"><b>11/14・21・28</b><span>三場課程（週六 09:00–17:00）</span></div>
-      <div class="kpi"><b>12/10 前</b><span>提交成果報告與 AI 案例成果集</span></div>
-      <div class="kpi"><b>12/15 前</b><span>驗收（履約期限）</span></div>
-    </div>
-
-    <div class="gantt"><div class="g-inner" id="gantt"></div>
-      <div class="legend">
-        <span><i style="background:var(--teal)"></i>固定日期</span>
-        <span><i style="background:repeating-linear-gradient(45deg,#3E9CA9,#3E9CA9 4px,#67B4BE 4px,#67B4BE 8px)"></i>依決標日起算（示意）</span>
-        <span><i style="background:var(--orange)"></i>課程與驗收節點</span>
-        <span><i style="background:#A7D8D4"></i>課後 30 天諮詢</span>
-      </div>
-    </div>
-
-    <div class="stages" id="stages" role="group" aria-label="五個階段"></div>
-    <div class="detail" id="detail" aria-live="polite"></div>
-    <p class="tl-note">斜紋長條為依決標日起算的階段，位置僅供示意。點選階段可查看工作項目、本院配合事項與產出。</p>
-  </div>
-</section>
-</div>
-
+<section class="sec" id="promise"><div class="wrap"><div class="sec-head"><div class="sec-no">02</div><div><h2>評選答詢，<br>我們這樣落實。</h2><p>評選當天委員提出的問題與我們的回答，會在課程中逐項做到。</p></div></div><div class="promise indent"><div class="pr"><div class="tag2">答詢 1、3</div><h3>全程使用模擬資料</h3><p>課前只取得各單位表單的欄位名稱與資料型態，由 AI 生成模擬資料製作練習檔；受訓與測試過程不接觸院方真實資料。</p></div><div class="pr"><div class="tag2">答詢 1</div><h3>地端模型的定位</h3><p>公司內部建置之地端模型（採用「千問」配合 Mac mini 之 MLS 系統）為公司測試與示範使用，不另外向院方收取費用。</p></div><div class="pr"><div class="tag2">答詢 4</div><h3>把各單位的處理規則交給 AI</h3><p>需求確認會議與欄位清單整理出跨表單的共通規則，轉成提示詞與 AI Agent 的作業框架（第三門 agent.md、SKILL.md）。</p></div><div class="pr"><div class="tag2">答詢 5</div><h3>驗證 AI 結果是否正確</h3><p>講師於模擬驗證環境以 Python 自動比對 AI 產出與預期規則；教學著重驗證思維，學員以 Excel 2016 練習檢核，並建立「人工確認」的習慣。</p></div><div class="pr"><div class="tag2">答詢 6</div><h3>縮小數位落差</h3><p>課前問卷分組；課中每場 1–2 位助教巡場與個別輔導（第一場安排 2 位，之後依問卷結果與學員需求）；課後提供數位講義與 30 天諮詢。</p></div><div class="pr"><div class="tag2">答詢 8</div><h3>教材授權上傳 KMO、TMS</h3><p>完整電子教材授權院方上傳院內 KMO 與 TMS，供同仁持續學習。</p></div><div class="pr"><div class="tag2">答詢 9</div><h3>結合 Copilot</h3><p>課前確認院內 Copilot 環境；主線以免費工具完成，Copilot 列為延伸示範，並搭配資料分級提醒。</p></div><div class="pr"><div class="tag2">答詢 2</div><h3>單位名稱</h3><p>「計畫室」已更正為「企劃室」；課程計畫書起，所有文件依院方提供的正式單位名稱撰寫。</p></div></div></div></section>
 <!-- 07 團隊 -->
-<section class="sec" id="team" style="padding-top:96px">
+<section class="sec" id="team" >
   <div class="wrap">
     <div class="sec-head rv">
-      <div class="sec-no">07</div>
+      <div class="sec-no">03</div>
       <div>
         <h2>執行團隊</h2>
-        <p>兩位主講講師互為備援；另有助教一名全程巡場，專案行政負責簽到、紀錄與教材。</p>
+        <p>兩位主講講師互為備援；每場 1–2 位助教全程巡場（第一場安排 2 位，之後依課前問卷決定），專案行政負責簽到、紀錄與教材。</p>
       </div>
     </div>
     <div class="team rv">
@@ -556,11 +617,11 @@ footer b { color: #fff; font-weight: 700; letter-spacing: .06em; }
 </section>
 
 </main>
-
+</div>
 <footer>
   <div class="wrap">
     <div><b>智谷網絡股份有限公司</b><br>案號 GH151160｜國立臺灣大學醫學院附設醫院新竹臺大分院<br>深耕-生成式 AI 提升行政效能教育訓練暨行政流程優化專案</div>
-    <div>本頁內容依本公司服務建議書整理，<br>實際日期與內容以需求確認會議定案為準。</div>
+    <div>本頁內容依本公司服務建議書與評選答詢整理（2026-10-27）。<br>日期與執行細節於需求確認會議確認；服務範圍依契約、服務建議書及答詢承諾辦理。</div>
   </div>
 </footer>
 
@@ -568,13 +629,13 @@ footer b { color: #fff; font-weight: 700; letter-spacing: .06em; }
 /* ── 八項痛點（建議書 2.3） ── */
 const C = { 1: ["第一門", "var(--c1)"], 2: ["第二門", "var(--c2)"], 3: ["第三門", "var(--c3)"] };
 const PAINS = [
-  ["醫療事務室・病歷資訊管理室", "與健保資料庫串接後的資料需人工轉譯、整理成報表，重複且易錯", [2], "以去識別化的申報資料格式為範例，用 Power Query 建立「匯入 → 欄位轉譯 → 輸出報表」的可重複查詢", "一支每月按「重新整理」即完成的 Power Query 查詢"],
+  ["醫療事務室・病歷資訊管理室", "與健保資料庫串接後的資料需人工轉譯、整理成報表，重複且易錯", [2], "以模擬的申報資料格式為範例，用 Power Query 建立「匯入 → 欄位轉譯 → 輸出報表」的可重複查詢", "一支每月按「重新整理」即完成的 Power Query 查詢"],
   ["各科部・行政單位", "科部報表需人工彙整多份檔案", [2, 3], "資料夾內多份格式相同的科部報表一次合併、統一欄位、產生彙總表；第三門由 AI Agent 讀取多份檔案自動產生月報", "資料夾合併查詢＋彙總樞紐表；月報產生器"],
   ["秘書室・各單位", "會議紀錄撰寫耗時，且決議事項無法自動觸發後續提醒", [1, 3], "逐字稿依本院紀錄格式整理決議、待辦、負責人、期限；第三門由 AI Agent 抽出待辦表，對 3 天內到期者批次產生催辦通知", "會議紀錄 Prompt 模板；「逐字稿 → 待辦 → 催辦通知」批次工具"],
   ["總務室採購", "廠商報價差異分析靠人工比對；採購案執行進度需人工追蹤提醒", [1, 2, 3], "採購前以深度研究做廠商與價格區間調查；多家報價抽取項目與單價做差異分析；到期案件由 AI Agent 批次產生催辦函", "研究題目模板；報價比較表模板；催辦函批次工具"],
   ["總務室經管", "經管資料涉及財產與帳務，不便上傳外部 AI，需本地程式或模板替代", [2, 3], "不上傳資料，只向 AI 描述表格結構，由 AI 產生 VBA 或 Power Query 步驟在院內電腦本地執行；把「不可上傳欄位」寫入 agent.md", "一支本地執行的 VBA 巨集；資料分級操作卡與 agent.md 條文"],
-  ["計畫室", "效益分析、財務分析與各項指標需手動計算，缺乏儀表板", [2, 3], "以樞紐分析、圖表與交叉分析篩選器建立可按月更新的指標儀表板；第三門由 AI Agent 讀指標檔自動產生月報敘述與圖表", "一頁式 Excel 儀表板；月報產生器"],
-  ["安全衛生室", "員工健檢異常數值需逐筆追蹤；職安法規期限需人工提醒", [2, 3], "健檢資料表以條件格式與篩選自動標出異常與應追蹤名單（去識別化範例）；AI Agent 批次產生追蹤通知與法規到期提醒", "異常追蹤表模板；通知與提醒批次工具"],
+  ["企劃室", "效益分析、財務分析與各項指標需手動計算，缺乏儀表板", [2, 3], "以樞紐分析、圖表與交叉分析篩選器建立可按月更新的指標儀表板；第三門由 AI Agent 讀指標檔自動產生月報敘述與圖表", "一頁式 Excel 儀表板；月報產生器"],
+  ["安全衛生室", "員工健檢異常數值需逐筆追蹤；職安法規期限需人工提醒", [2, 3], "健檢資料表以條件格式與篩選自動標出異常與應追蹤名單（模擬資料）；AI Agent 批次產生追蹤通知與法規到期提醒", "異常追蹤表模板；通知與提醒批次工具"],
   ["教學部・醫療品質・資訊室", "教育訓練行政、品質指標月報、資訊需求單等文書與統計工作量大", [1, 2, 3], "訓練公告與簽呈依本院格式起草；滿意度與品質指標以樞紐自動統計，月報敘述經 Gamma 生成簡報；AI Agent 批次產生公告或指標月報", "公文與公告 Prompt 模板；Gamma 簡報；月報產生器"],
 ];
 document.getElementById("painList").innerHTML = PAINS.map(([u, p, cs, how, out], i) =>
@@ -591,42 +652,42 @@ document.querySelector(".pain").setAttribute("aria-expanded", "true");
 
 /* ── 三門課程（建議書 3.2–3.4） ── */
 const COURSES = [
-  { c: "var(--c1)", n: "第一門・7 小時", t: "生成式 AI 提升行政工作效率", who: "主講　趙建翔",
+  { img: "img/01-course1.jpg", c: "var(--c1)", n: "第一門・7 小時", t: "生成式 AI 提升行政工作效率", who: "主講　趙建翔",
     g: "讓 AI 產出符合本院格式的公文、Email 與會議紀錄，以深度研究與 NotebookLM 完成附來源的資料蒐集，並知道哪些資料可以上傳、哪些不能。",
     u: [["行政 AI 工作觀與提示詞進階", "個人 Prompt 卡"], ["行政公文與簽呈", "公文草稿＋格式檢核 Prompt"], ["Email 與會議紀錄", "會議紀錄模板＋待辦清單"], ["AI 深度研究 × 行政資料蒐集", "附來源的研究摘要"], ["NotebookLM 長文件解讀", "單位法規筆記本"], ["簡報與報表敘事 × Gamma", "月報敘述＋Gamma 簡報"], ["分組工作坊：行政案例演練", "每組一件改善案例卡"]],
     tech: "免費版 ChatGPT／Gemini、Gemini Deep Research、NotebookLM、Gamma", ws: [6] },
-  { c: "var(--c2)", n: "第二門・7 小時", t: "AI × Excel 行政自動化", who: "主講　鄭淳詩",
+  { img: "img/02-course2.jpg", c: "var(--c2)", n: "第二門・7 小時", t: "AI × Excel 行政自動化", who: "主講　鄭淳詩",
     g: "讓 AI 協助寫公式、建立 Power Query 查詢與 VBA 巨集，把資料轉譯、多檔彙整、差異分析與儀表板變成可重複執行的作業；資料不離開院內電腦。",
     u: [["讓 AI 讀懂你的表：AI 公式", "公式提問模板＋對照卡"], ["資料清理與轉譯：Power Query", "可重複執行的轉譯查詢"], ["多檔彙整", "資料夾合併查詢＋樞紐表"], ["AI 寫 VBA：本地自動化", "3 支可重用 VBA 巨集"], ["差異分析與異常追蹤", "報價差異＋異常追蹤模板"], ["指標儀表板", "一頁式 Excel 儀表板"], ["分組工作坊：每組一張自動化報表", "每組一件自動化報表"]],
     tech: "Excel 2016（Power Query、VBA、樞紐分析）、免費版生成式 AI", ws: [6] },
-  { c: "var(--c3)", n: "第三門・7 小時", t: "AI 工作流程優化", who: "主講　趙建翔　・　進階組／應用組雙軌",
+  { img: "img/03-course3.jpg", c: "var(--c3)", n: "第三門・7 小時", t: "AI 工作流程優化", who: "主講　趙建翔　・　進階組／應用組雙軌",
     g: "把一項行政流程拆成觸發、處理、輸出，建立部門專用 AI 助理，以 agent.md／log.md／SKILL.md 管理 AI Agent，做出符合自己單位情境的批次作業原型。",
     u: [["流程拆解與 AI Agent 概念", "個人流程圖"], ["自訂 AI 助理", "可分享的單位助理"], ["AI 編程代理總覽與環境建置", "第一個完成的交辦任務"], ["AI Agent 工作資料夾習慣", "單位 Agent 資料夾範本"], ["Agent 批次作業：多部門主題", "依單位選做的批次工具"], ["Prototype 工作坊（雙軌）", "每組一件流程改善成果"], ["成果發表與推廣計畫", "回單位後 30 天行動表"]],
     tech: "Gemini Gem、Antigravity、Gemini Canvas；Claude Code、Codex 由講師示範", ws: [5, 6] },
 ];
 document.getElementById("courseList").innerHTML = COURSES.map((k) =>
   `<article class="course rv" style="--c:${k.c}">
-     <div class="cn">${k.n}</div><h3>${k.t}</h3><div class="who">${k.who}</div><p class="goal">${k.g}</p>
+     <div class="cimg"><img src="${k.img}" alt="${k.t} 課程主題圖" loading="lazy"></div><div class="cn">${k.n}</div><h3>${k.t}</h3><div class="who">${k.who}</div><p class="goal">${k.g}</p>
      <ol class="units">${k.u.map(([t, o], i) => `<li${k.ws.includes(i) ? ' class="ws"' : ""}><span>${t}<small>產出：${o}</small></span></li>`).join("")}</ol>
      <div class="tech">${k.tech}</div>
    </article>`).join("");
 
-/* ── 執行時程（建議書 2.5，候選 B） ── */
+/* ── 執行時程（建議書 2.5，日期為調整建議） ── */
 const STAGES = [
-  { n: "階段一", t: "需求確認與課程設計", d: "決標次日起 2 週內", rel: true, s: "2026-10-15", e: "2026-10-29",
-    work: ["需求確認會議 1 場（邀請前期受訪單位代表）", "確認學員名單與單位組成、前測問卷發放", "確認指定案例與練習資料之提供方式", "依會議結果調整教材與案例", "提出課程計畫書"],
-    coop: ["指定會議日期與出席代表", "提供參訓名單", "決定是否提供去識別化案例"],
+  { n: "階段一", t: "需求確認與課程設計", d: "需求確認會議建議 10/28–11/3", rel: true, s: "2026-10-28", e: "2026-11-06",
+    work: ["需求確認會議 1 場（邀請前期受訪單位代表）", "確認學員名單與單位組成、前測問卷發放", "收集各單位代表性表單的欄位清單（不含資料），製作模擬資料", "依會議結果調整教材與案例", "提出課程計畫書"],
+    coop: ["指定會議日期與出席代表", "提供參訓名單", "提供各單位 1–2 份代表性表單的欄位清單（不含資料）"],
     out: ["課程計畫書（課程規劃書、時程、教材架構、需求分析）"] },
-  { n: "階段二", t: "教材確認", d: "第一門課前 10 個工作天", rel: true, s: "2026-10-29", e: "2026-11-13",
+  { n: "階段二", t: "教材確認", d: "11/7 前送審（課前 10 個工作天）", rel: true, s: "2026-11-07", e: "2026-11-20",
     work: ["三門教材初稿送本院確認", "講師會議（兩位講師＋助教對齊案例、分組、工具版本）", "課前一週提供講師名單、學經歷與授課主題", "教材電子檔交本院轉發學員"],
     coop: ["審閱教材、轉發電子教材", "提醒學員攜帶筆電並預先註冊免費 AI 帳號"],
     out: ["三門客製教材電子檔"] },
-  { n: "階段三", t: "三場課程", d: "11/14、11/21、11/28（週六）", hot: true, days: ["2026-11-14", "2026-11-21", "2026-11-28"],
+  { n: "階段三", t: "三場課程", d: "11/21、11/28、12/5（週六，建議）", hot: true, days: ["2026-11-21", "2026-11-28", "2026-12-05"],
     work: ["每場 09:00–17:00（7 小時）", "簽到退、執行紀錄表、課堂照片、滿意度調查", "分組成果發表", "課間作業（學員回單位試用）"],
     coop: ["會議室、投影設備、電源", "學員出席催辦"],
     out: ["簽到表、執行紀錄表、滿意度分析、每組改善案例"] },
-  { n: "階段四", t: "成果彙整與課後諮詢", d: "成果報告 12/10 前", s: "2026-11-29", e: "2026-12-10", consult: ["2026-11-29", "2026-12-28"],
-    work: ["學習分析（前後測、實作完成率）", "AI 案例成果集（每組一件）", "成果報告與改善建議", "課後 30 天諮詢（自第三場課次日起，至 12/28）"],
+  { n: "階段四", t: "成果彙整與課後諮詢", d: "成果報告 12/10 前", s: "2026-12-06", e: "2026-12-10", consult: ["2026-12-06", "2027-01-04"],
+    work: ["學習分析（前後測、實作完成率）", "AI 案例成果集（每組一件）", "成果報告與改善建議", "課後 30 天諮詢（自第三場課次日起，至 1/4）"],
     coop: ["審閱成果報告"],
     out: ["成果報告、AI 案例成果集、電子教材、課程照片"] },
   { n: "階段五", t: "驗收", d: "12/15 前", bt: "驗收", hot: true, s: "2026-12-11", e: "2026-12-15",
@@ -634,20 +695,20 @@ const STAGES = [
     coop: ["辦理驗收"],
     out: ["驗收合格"] },
 ];
-const START = new Date("2026-10-01"), END = new Date("2027-01-01");
+const START = new Date("2026-10-15"), END = new Date("2027-01-10");
 const span = END - START;
 const pct = (d) => ((new Date(d) - START) / span) * 100;
 const LW = 190;
 function renderGantt() {
   const g = document.getElementById("gantt");
-  const months = [["2026-10-16", "10 月"], ["2026-11-15", "11 月"], ["2026-12-16", "12 月"]];
+  const months = [["2026-10-22", "10 月"], ["2026-11-15", "11 月"], ["2026-12-16", "12 月"], ["2027-01-05", "1 月"]];
   let html = '<div class="g-head"><div>階段</div><div class="months">' +
     months.map(([d, m]) => `<span style="left:${pct(d)}%">${m}</span>`).join("") + "</div></div>";
   STAGES.forEach((st, i) => {
-    let inner = ["2026-11-01", "2026-12-01"].map((d) => `<div class="grid-line" style="left:${pct(d)}%"></div>`).join("");
+    let inner = ["2026-11-01", "2026-12-01", "2027-01-01"].map((d) => `<div class="grid-line" style="left:${pct(d)}%"></div>`).join("");
     if (st.days) inner += st.days.map((d) => `<div class="dot" style="left:${pct(d) + 0.55}%" title="${d}"></div>`).join("");
     else inner += `<div class="bar ${st.rel ? "rel" : st.hot ? "hot" : ""}" style="left:${pct(st.s)}%;width:${pct(st.e) - pct(st.s) + 1.1}%">${st.bt || st.d}</div>`;
-    if (st.consult) inner += `<div class="bar soft" style="top:44px;height:9px;padding:0;left:${pct(st.consult[0])}%;width:${pct(st.consult[1]) - pct(st.consult[0]) + 1.1}%" title="課後 30 天諮詢 11/29–12/28"></div>`;
+    if (st.consult) inner += `<div class="bar soft" style="top:44px;height:9px;padding:0;left:${pct(st.consult[0])}%;width:${pct(st.consult[1]) - pct(st.consult[0]) + 1.1}%" title="課後 30 天諮詢 12/6–1/4"></div>`;
     html += `<div class="g-row" data-i="${i}"><div class="g-label">${st.n}　${st.t}<small>${st.d}</small></div><div class="track">${inner}</div></div>`;
   });
   const at = (p) => `left:calc(${LW}px + (100% - ${LW}px) * ${p / 100})`;
@@ -676,7 +737,27 @@ renderGantt(); renderStages(); show(2);
 /* ── reveal on scroll ── */
 const io = "IntersectionObserver" in window ? new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" }) : null;
 document.querySelectorAll(".rv").forEach((el) => io ? io.observe(el) : el.classList.add("in"));
-if (location.hash) document.querySelectorAll(".rv").forEach((el) => el.classList.add("in"));
+
+
+/* ── 分頁 ── */
+const TABS = ["overview", "courses", "timeline", "confirm", "quality"];
+function openTab(t, push) {
+  let target = null;
+  if (!TABS.includes(t)) { const el = t && document.getElementById(t); const p = el && el.closest(".panel"); if (p) { target = el; t = p.id.replace("tab-", ""); } else t = "overview"; }
+  TABS.forEach((x) => { const p = document.getElementById("tab-" + x); if (p) p.hidden = x !== t; });
+  document.querySelectorAll('[role="tab"]').forEach((b) => b.setAttribute("aria-selected", b.dataset.tab === t));
+  document.querySelectorAll("#tab-" + t + " .rv").forEach((el) => el.classList.add("in"));
+  const btn = document.querySelector('[role="tab"][data-tab="' + t + '"]');
+  if (btn && btn.scrollIntoView) btn.scrollIntoView({ block: "nearest", inline: "center" });
+  if (push) { try { history.replaceState(null, "", "#" + t); } catch (e) {} }
+  if (target) setTimeout(() => target.scrollIntoView(), 0); else window.scrollTo(0, 0);
+}
+document.querySelectorAll('[role="tab"]').forEach((b) => b.addEventListener("click", () => openTab(b.dataset.tab, true)));
+document.querySelectorAll('a[href^="#"]:not([data-go])').forEach((a) => a.addEventListener("click", (e) => { const id = a.getAttribute("href").slice(1); if (document.getElementById(id)) { e.preventDefault(); openTab(id, false); } }));
+document.querySelector('[role="tablist"]').addEventListener("keydown", (e) => { if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return; const cur = TABS.indexOf(document.querySelector('[role="tab"][aria-selected="true"]').dataset.tab); const nx = TABS[(cur + (e.key === "ArrowRight" ? 1 : TABS.length - 1)) % TABS.length]; openTab(nx, true); document.getElementById("tb-" + nx).focus(); });
+document.querySelectorAll("[data-go]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); openTab(a.dataset.go, true); }));
+openTab((location.hash || "").slice(1), false);
+window.addEventListener("hashchange", () => openTab(location.hash.slice(1), false));
 </script>
 </body>
 </html>
